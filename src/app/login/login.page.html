@@ -1,0 +1,58 @@
+<ion-content padding>
+  <h1 align="center">{{ingreso}}</h1>
+  <ion-input 
+    *ngIf="ingreso === 'Registro'" 
+    type="text" 
+    placeholder="Nombres y Apellidos">
+  </ion-input>
+  <ion-input 
+    *ngIf="ingreso === 'Registro'" 
+    type="tel" 
+    placeholder="Numero de Teléfono o Celular">
+  </ion-input>
+  <ion-input 
+    *ngIf="ingreso === 'Registro'" 
+    type="number" 
+    placeholder="Numero de DNI">
+  </ion-input>
+  <ion-input 
+    type="text" 
+    placeholder="Correo Interno">
+  </ion-input>
+  <ion-input 
+    type="password" 
+    placeholder="Contraseña">
+  </ion-input>
+  <ion-input 
+    *ngIf="ingreso === 'Registro'" 
+    type="password" 
+    placeholder="Repetir Contraseña">
+  </ion-input>
+  
+  <ion-select id="sucursal" *ngIf="ingreso === 'Registro'" placeholder="Ingresar Sucursal">
+    <ion-select-option value="sucursalA">Sucursal A</ion-select-option>
+    <ion-select-option value="sucursalB">Sucursal B</ion-select-option>
+    <ion-select-option value="sucursalC">Sucursal C</ion-select-option>
+  </ion-select>
+
+  <ion-button 
+    *ngIf="ingreso === 'Registro'" 
+    expand="full" 
+    (click)="registrar()"
+    >REGISTRARSE
+  </ion-button>
+  <ion-button 
+    *ngIf="ingreso === 'Login'" 
+    expand="full" 
+    (click)="ingresar()"
+    >INGRESAR
+  </ion-button>
+
+  <span *ngIf="ingreso === 'Login'">¿No tienes una Cuenta? 
+    <a (click)="ingreso = 'Registro'">Regístrate</a>
+  </span>
+  <br/>
+  <span *ngIf="ingreso ==='Registro'">¿Ya tienes una Cuenta? 
+    <a (click)="ingreso = 'Login'">Entrar</a>
+  </span>
+</ion-content>
