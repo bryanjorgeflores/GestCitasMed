@@ -34,6 +34,11 @@ export class AppComponent {
       title: 'Chequeo',
       url: '/chequeo',
       icon: 'list-box'
+    },
+    {
+      title: 'Registro',
+      url: '/registropaciente',
+      icon: 'person-add'
     }
   ];
 

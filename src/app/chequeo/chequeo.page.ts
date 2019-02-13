@@ -14,9 +14,10 @@ export class ChequeoPage implements OnInit {
     private route: ActivatedRoute,
     private filterPaciente: FilterPacientes
     ) {
-      this.route.params.subscribe(data => {
+      this.route.params.subscribe((data) => {
         this.paciente = data;
-      })
+        console.log(this.paciente);
+      });
       this.paciente = this.filterPaciente.getPaciente(this.paciente.id);
       this.citas = this.paciente.citas;
    }

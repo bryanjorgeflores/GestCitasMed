@@ -45,7 +45,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button>
+      <ion-fab-button [routerLink]="['/registropaciente']">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
   </ion-fab>
@@ -54,17 +54,17 @@
 
 <ion-footer>
   <ion-segment>
-    <ion-segment-button checked layout="icon-start">
-      <ion-label>Item One</ion-label>
-      <ion-icon name="call"></ion-icon>
+    <ion-segment-button checked layout="icon-start" (click)="getEsperaPacientes()">
+      <ion-label color="warning">Próximos</ion-label>
+      <ion-icon name="stopwatch" color="warning"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button layout="icon-start">
-      <ion-label>Item Two</ion-label>
-      <ion-icon name="heart"></ion-icon>
+    <ion-segment-button layout="icon-start" (click)="getRetrasoPacientes()">
+      <ion-label color="danger">Pasados</ion-label>
+      <ion-icon name="alert" color="danger"></ion-icon>
     </ion-segment-button>
-    <ion-segment-button layout="icon-start">
-      <ion-label>Item Three</ion-label>
-      <ion-icon name="pin"></ion-icon>
+    <ion-segment-button layout="icon-start" (click)="getTodoPacientes()">
+      <ion-label color="primary">Todos</ion-label>
+      <ion-icon name="done-all" color="primary"></ion-icon>
     </ion-segment-button>
   </ion-segment>
 </ion-footer>

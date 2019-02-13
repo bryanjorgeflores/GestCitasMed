@@ -55,6 +55,7 @@ describe('AppComponent', () => {
     expect(menuItems[2].textContent).toContain('Login');
     expect(menuItems[3].textContent).toContain('Solicitud');
     expect(menuItems[4].textContent).toContain('Chequeo');
+    expect(menuItems[5].textContent).toContain('Registro');
   });
 
   it('should have urls', async () => {
@@ -68,6 +69,7 @@ describe('AppComponent', () => {
     expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/login');
     expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/solicitud');
     expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/chequeo');
+    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/registropaciente');
   });
 
 });

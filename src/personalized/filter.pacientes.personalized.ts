@@ -7,31 +7,46 @@ export class FilterPacientes {
   users: any;
   fechaHoy: number = 130;
   pacientesEspera: any;
+  pacientesRetraso: any;
   constructor(
     private usersService: UsersService
   ) { 
-    this.users = this.usersService.getUsers();  this.pacientesEspera = this.users.pacientes.filter((paciente: any) => {
-    let fechaCita = paciente.citas.findIndex((cita: any) => {
-      paciente.citaUltima = cita.fecha;
-      return cita.fecha >= this.fechaHoy;
+    this.users = this.usersService.getUsers();  
+    this.pacientesEspera = this.users.pacientes.filter((paciente: any) => {
+      let fechaCita = paciente.citas.findIndex((cita: any) => {
+        paciente.citaUltima = cita.fecha;
+        return cita.fecha >= this.fechaHoy;
+      });
+      return fechaCita > -1;
     });
-    return fechaCita > -1;
+    this.pacientesRetraso = this.users.pacientes.filter((paciente: any) => {
+      let fechaCita = paciente.citas.findIndex((cita: any) => {
+        paciente.citaUltima = cita.fecha;
+        return cita.fecha < this.fechaHoy;
+      });
+      return fechaCita > -1;
     });
   }
-  getPacienteEspera() {
+  getPacientesEspera() {
     return this.pacientesEspera;
   }
-  getPacienteEsperaOrder() {
-    this.pacientesEspera.sort((a: any, b: any) => {
-      return a.citaUltima - b.citaUltima;
-    });
+  getPacientesRetraso() {
     return this.pacientesEspera;
   }
-  getPaciente(id) {
-    let pacienteSeleccionado = this.users.pacientes.find((paciente) => {
-      return paciente.id == id;
-    });
+  getPacientesEsperaOrden() {
+    this.pacientesEspera.sort((a: any, b: any) => a.citaUltima - b.citaUltima);
+    return this.pacientesEspera;
+  }
+  getPacientesRetrasoOrden() {
+    this.pacientesRetraso.sort((a:any, b: any) => a.citaUltima - b.citaUltima);
+    return this.pacientesRetraso;
+  }
+  getPaciente(id: any) {
+    let pacienteSeleccionado = this.users.pacientes.find((paciente: any) => paciente.id == id);
     return pacienteSeleccionado;
   }
+  getAllPacientes() {
+    return this.users.pacientes;
+  }
 }
-// Cuidado con el async porque no genera los filtros adecuados.
+// Cuidado con el async porque no genera los filtros adecuados.Esto es debido a que torna la funciona de forma asincrona cuando deberia ser obligatorio que pase primero por el.
