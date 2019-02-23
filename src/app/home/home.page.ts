@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FilterPacientes } from 'src/personalized/filter.pacientes.personalized';
-import { Router } from '@angular/router';
+import { FilterData } from 'src/personalized/filter.data.personalized';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
 
 @Component({
@@ -9,18 +9,22 @@ import { AlertPersonalized } from 'src/personalized/alert.personalized';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  urlData: string = '';
+
   pacientes: any;
   filtroPaciente: string = 'Espera';
+
   constructor(
     private alertPersonalized: AlertPersonalized,
-    private filterPacientes: FilterPacientes,
-    private router: Router
+    private filterPacientes: FilterData,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
+    this.urlData = this.activatedRoute.snapshot.paramMap.get('datos');
+    console.log(this.urlData);
+    // this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
   }
-  irAChequeo(paciente: any) {
-    this.router.navigate(['/chequeo', paciente]);
-  }
+
   // irARegistroPaciente() {
   //   this.router.navigate(['/registropaciente']);
   // }
@@ -34,13 +38,13 @@ export class HomePage {
     );
   }
 
-  getTodoPacientes() {
-    this.pacientes = this.filterPacientes.getAllPacientes();
-  }
-  getRetrasoPacientes() {
-    this.pacientes = this.filterPacientes.getPacientesRetrasoOrden();
-  }
-  getEsperaPacientes() {
-    this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
-  }
+  // getTodoPacientes() {
+  //   this.pacientes = this.filterPacientes.getAllPacientes();
+  // }
+  // getRetrasoPacientes() {
+  //   this.pacientes = this.filterPacientes.getPacientesRetrasoOrden();
+  // }
+  // getEsperaPacientes() {
+  //   this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
+  // }
 }

@@ -8,9 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UsersService } from 'src/services/user.service';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
-import { FilterPacientes } from 'src/personalized/filter.pacientes.personalized';
+import { FilterData } from 'src/personalized/filter.data.personalized';
+import { DataService } from 'src/services/data.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,9 +24,9 @@ import { FilterPacientes } from 'src/personalized/filter.pacientes.personalized'
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    UsersService, 
+    DataService, 
     AlertPersonalized,
-    FilterPacientes
+    FilterData
   ],
   bootstrap: [AppComponent]
 })

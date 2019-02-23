@@ -8,7 +8,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'home/:datos',
     loadChildren: './home/home.module#HomePageModule'
   },
   {
@@ -24,11 +24,24 @@ const routes: Routes = [
     loadChildren: './solicitud/solicitud.module#SolicitudPageModule' 
   },
   {
-    path: 'chequeo', 
+    path: 'chequeo/:paciente', 
     loadChildren: './chequeo/chequeo.module#ChequeoPageModule'
   },
-  { path: 'registropaciente', 
+  { 
+    path: 'registropaciente', 
     loadChildren: './registropaciente/registropaciente.module#RegistropacientePageModule' 
+  },
+  { 
+    path: 'herramientas', 
+    loadChildren: './herramientas/herramientas.module#HerramientasPageModule'
+  },
+  { 
+    path: 'imagenes/:src', 
+    loadChildren: './imagenes/imagenes.module#ImagenesPageModule' 
+  },
+  { 
+    path: 'datos/:datos', 
+    loadChildren: './datos/datos.module#DatosPageModule' 
   }
 ];
 

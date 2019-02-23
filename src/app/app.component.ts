@@ -11,19 +11,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Pacientes',
-      url: '/home',
-      icon: 'people'
-    },
-    {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'key'
+      title: 'Usuario',
+      url: '/datos',
+      icon: 'contact'
     },
     {
       title: 'Solicitud',
@@ -31,14 +21,9 @@ export class AppComponent {
       icon: 'swap'
     },
     {
-      title: 'Chequeo',
-      url: '/chequeo',
-      icon: 'list-box'
-    },
-    {
-      title: 'Registro',
-      url: '/registropaciente',
-      icon: 'person-add'
+      title: 'Cerrar Sesión',
+      url: '/login',
+      icon: 'log-out'
     }
   ];
 

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>herramientas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid >
+    <ion-row responsive-sm>
+      <ion-col col-6 *ngFor="let tarjeta of tarjetas">
+        <ion-card>
+          <button [routerLink]="['/imagenes', tarjeta.src]">
+          <img src="{{tarjeta.src}}"/>
+          <div class="card-title">{{tarjeta.titulo}}</div>
+          <div class="card-subtitle">{{tarjeta.subtitulo}}</div>
+        </button>
+        </ion-card>
+      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list lines="none">
+    <ion-list-header>
+      Archivos
+    </ion-list-header>
+    <ion-item>
+      <ng-container *ngFor="let archivo of archivos; let i=index">
+          <div *ngIf="archivo.estado">
+            <h6 font size=12px>{{i+1}}. {{archivo.nombre}}
+              <a href="{{archivo.url}}">
+                  <img src="assets/imgs_herramientas/pdf.png">
+              </a>
+            </h6>
+        </div>
+      </ng-container>
+  </ion-item>    
+  </ion-list>
+</ion-content>

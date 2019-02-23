@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { AlertController } from "@ionic/angular";
+import { AlertController, ToastController } from "@ionic/angular";
 
 @Injectable()
 
 export class AlertPersonalized {
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
     ) { }
 
   async alertAcept(
@@ -21,5 +22,16 @@ export class AlertPersonalized {
       buttons
     });
     return await acept.present();
+  }
+
+  async toastDegradable(
+    message: string,
+    duration: number
+  ) {
+    const toastDegradable = await this.toastCtrl.create({
+      message,
+      duration
+    });
+    toastDegradable.present();
   }
 }

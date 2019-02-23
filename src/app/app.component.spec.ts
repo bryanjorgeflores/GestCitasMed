@@ -49,13 +49,11 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(2);
-    expect(menuItems[0].textContent).toContain('Pacientes');
-    expect(menuItems[1].textContent).toContain('List');
-    expect(menuItems[2].textContent).toContain('Login');
-    expect(menuItems[3].textContent).toContain('Solicitud');
-    expect(menuItems[4].textContent).toContain('Chequeo');
-    expect(menuItems[5].textContent).toContain('Registro');
+    expect(menuItems.length).toEqual(4);
+    expect(menuItems[0].textContent).toContain('Home');
+    expect(menuItems[1].textContent).toContain('Usuario');
+    expect(menuItems[2].textContent).toContain('Solicitud');
+    expect(menuItems[3].textContent).toContain('Cerrar Sesión');
   });
 
   it('should have urls', async () => {
@@ -63,13 +61,12 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(2);
+    expect(menuItems.length).toEqual(4);
     expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/list');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/login');
-    expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/solicitud');
-    expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/chequeo');
-    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/registropaciente');
+    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/datos');
+    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/solicitud');
+    expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/login');
+
   });
 
 });

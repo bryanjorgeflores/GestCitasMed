@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>datos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h1 align="center">Actualizacion de Datos</h1>
+  <ion-input [value]="dniDoctor" disabled></ion-input>
+  <ion-input 
+    type="text"
+    [(ngModel)]="nombresDoctor"
+    placeholder="Nombres">
+  </ion-input>
+  <ion-input 
+    type="text" 
+    [(ngModel)]="apellidosDoctor"
+    placeholder="Apellidos">
+  </ion-input>
+  <ion-input 
+    type="tel"
+    maxlength="9" 
+    [(ngModel)]="telefonoDoctor"
+    placeholder="Celular">
+  </ion-input>
+
+  <ol>
+    <li *ngFor="let requisito of requisitos">
+      <ion-text
+        [color]="requisito.noCumple? 'danger': 'success'"
+        >{{requisito.mensaje}} {{requisito.noCumple? "X": ""}}</ion-text>
+    </li>
+  </ol>
+  <!-- <ion-card>
+    <ion-card-header>Reglas de la Contraseña:</ion-card-header>
+    <ion-card-content>
+      <p>Longitud Minima: 6 caracteres.</p>
+      <p>Por lo menos un símbolo (@,*, etc).</p>
+      <p>Por lo menos una letra mayúscula.</p>
+      <p>Por lo menos una letra minúscula.</p>
+      <p>Por lo menos un digito (1,2,...,8,9,0).</p>
+      <p>Ambas Contraseñas deben coincidir.</p>
+    </ion-card-content>
+  </ion-card> -->
+  <ion-input 
+    type="password"
+    minlength="6"
+    [(ngModel)]="passwordDoctor"
+    placeholder="Contraseña Nueva">
+  </ion-input>
+  <ion-input 
+    type="password"
+    minlength="6"
+    [(ngModel)]="passwordRepDoctor"
+    placeholder="Repita Contraseña Nueva">
+  </ion-input>
+
+  <ion-button
+    color="success"
+    expand="full" 
+    (click)="aplicarCambios()"
+    >Aplicar Cambios
+  </ion-button>
+</ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FilterPacientes } from 'src/personalized/filter.pacientes.personalized';
+import { FilterData } from 'src/personalized/filter.data.personalized';
 
 @Component({
   selector: 'app-chequeo',
@@ -12,14 +12,11 @@ export class ChequeoPage implements OnInit {
   citas: any;
   constructor(
     private route: ActivatedRoute,
-    private filterPaciente: FilterPacientes
+    private filterData: FilterData
     ) {
-      this.route.params.subscribe((data) => {
-        this.paciente = data;
-        console.log(this.paciente);
-      });
-      this.paciente = this.filterPaciente.getPaciente(this.paciente.id);
-      this.citas = this.paciente.citas;
+      // this.paciente = this.filterData.getPaciente(this.route.snapshot.paramMap.get('paciente'));
+      // console.log(this.paciente);
+      // this.citas = this.paciente.citas;
    }
 
   ngOnInit() {

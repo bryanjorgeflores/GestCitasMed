@@ -16,7 +16,7 @@
       *ngFor="let paciente of pacientes">
 
       <ion-item 
-        (click)="irAChequeo(paciente)">
+        [routerLink]="['/chequeo', paciente.id]">
 
         <ion-thumbnail>
           <img 
