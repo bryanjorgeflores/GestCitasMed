@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
 import { Router } from '@angular/router';
 import { FilterData } from 'src/personalized/filter.data.personalized';
-import { NavController } from '@ionic/angular';
+import { GetDataService } from 'src/services/getdata.service';
+import { Sucursal } from 'src/interfaces/models/sucursal.model';
 
 
 @Component({
@@ -19,44 +20,56 @@ export class LoginPage implements OnInit {
   sucursal: any = {};
   urlData: string = '';
   alertaLogin: string = '';
+  sucursales: Array<Sucursal>;
+  dniDoctor: string = '';
 
   constructor(
     private alertPersonalized: AlertPersonalized,
-    private router: Router,
-    private filterData: FilterData,
-    private navCtrl: NavController
+    public router: Router,
+    private getDataService: GetDataService,
+    private filterData: FilterData
+    
   ) { 
     
     
   }
 
   ngOnInit() {
+    this.getDataService.getSucursales().subscribe((data) => {
+      this.sucursales = data;
+    }, err => {
+      console.log(err);
+    });
   }
 
   ingresar() {
-    this.sucursal = this.filterData.getSucursalByIndex(Number(this.idSucursal));
+    // this.sucursal = this.filterData.getSucursalByIndex(Number(this.idSucursal));
 
-    this.doctor = this.sucursal.doctores.find((doctor: any, index: number) => {
-      this.indexDoctor = index;
-      return doctor.id === this.idDoctor;
-    });
-    this.urlData = `${this.idSucursal}-${this.idDoctor}-${this.indexDoctor}`;
-    console.log(this.doctor);
-
-    if (this.doctor && this.passwordDoctor === this.doctor.password) {
-      if (this.passwordDoctor == this.doctor.id) {
-        this.router.navigate(['/datos', this.urlData]);
-          console.log(this.urlData);
+    // this.doctor = this.sucursal.doctores.find((doctor: any, index: number) => {
+    //   this.indexDoctor = index;
+    //   return doctor.id === this.idDoctor;
+    // });
+    this.getDataService.getDoctor(this.dniDoctor).subscribe(doctor => {
+      console.log(doctor);
+      if (doctor && this.passwordDoctor == doctor.password) {
+        this.urlData = `${doctor._id}-${this.dniDoctor}`;
+        console.log(doctor);
+          if (doctor.password == doctor.dni) {
+            this.router.navigate(['/datos', this.urlData]);
+              console.log(this.urlData);
+          } else {
+            this.router.navigate(['/home', this.urlData]);
+          }
       } else {
-        this.router.navigate(['/home', this.urlData]);
+        this.alertPersonalized.toastDegradable(
+          'Datos mal Ingresados, Intente de Nuevo por favor',
+          2000
+        )
       }
-    } else {
-      this.alertPersonalized.toastDegradable(
-        'Datos mal Ingresados, Intente de Nuevo por favor',
-        2000
-      )
-    }
-    
+    }, err => {
+      console.log(err);
+    });
+
   }
   
 }

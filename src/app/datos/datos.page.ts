@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilterData } from 'src/personalized/filter.data.personalized';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
-import { NavParams } from '@ionic/angular';
+import { requisitosPassword } from 'src/personalized/config/variables.config';
+import { PutDataService } from 'src/services/putdata.service';
+import { GetDataService } from 'src/services/getdata.service';
 
 @Component({
   selector: 'app-datos',
@@ -12,60 +14,58 @@ import { NavParams } from '@ionic/angular';
 export class DatosPage implements OnInit {
   doctor: any = {};
   dniDoctor: string = '';
-  nombresDoctor: string = '';
-  apellidosDoctor: string = '';
-  passwordDoctor: string = '';
-  passwordRepDoctor: string = '';
-  telefonoDoctor: string = '';
-  apellidoDoctor: string = '';
-  passwordRev: number = 0;
-  requisitos: any [] = [
-    { mensaje: 'Contraseña no Vacía', noCumple: this.passwordDoctor == '' },
-    { mensaje: 'Longitud entre 6 y 20', noCumple: this.passwordDoctor.length < 6 || this.passwordDoctor.length >= 20 },
-    { mensaje: 'Por lo menos un caracter especial o símbolo', noCumple: this.passwordDoctor.search(/[\W_]+/) == -1 },
-    { mensaje: 'Por lo menos un caracter Mayúscula', noCumple: this.passwordDoctor.search(/[A-Z]+/) == -1 },
-    { mensaje: 'Por lo menos un caracter minúscula', noCumple: this.passwordDoctor.search(/[a-z]+/) == -1 },
-    { mensaje: 'Por lo menos un caracter número', noCumple: this.passwordDoctor.search(/[0-9]+/) == -1 },
-    { mensaje: 'Ambas contraseña coinciden', noCumple: this.passwordDoctor != this.passwordRepDoctor },
-  ];
+  passwordRep: string = '';
+  idDoctor: string = '';
+  requisitos: Array<any>;
   urlData: string = '';
+  cambiosDoctor: any = {
+    nombres: '',
+    telefono: '123',
+    password: '456'
+  }
+  
 
   constructor(
-    private activatedRouter: ActivatedRoute,
-    private router: Router,
+    public activatedRouter: ActivatedRoute,
+    public router: Router,
+    private putDataService: PutDataService,
+    private getDataService: GetDataService,
     private filterData:FilterData,
     private alertPersonalized: AlertPersonalized,
   ) { 
-    this.urlData = this.activatedRouter.snapshot.paramMap.get('datos');
-    console.log(this.urlData, 'hola');
-    
     // this.doctor = this.filterData.getDoctorByIndex(Number(this.urlData.idSucursal), this.urlData.idDoctor);
   }
 
   ngOnInit() {
-    
+    this.urlData = this.activatedRouter.snapshot.paramMap.get('datos');
+    this.idDoctor = this.urlData.split('-')[0];
+    this.dniDoctor = this.urlData.split('-')[1];
+    this.getDataService.getDNI(this.dniDoctor).subscribe((data: any) => {
+      this.cambiosDoctor.nombres = data.nombres;
+    })
+    this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
   }
 
   aplicarCambios() {
-    this.requisitos = [
-      { mensaje: 'Contraseña no Vacía', noCumple: this.passwordDoctor == '' },
-      { mensaje: 'Longitud entre 6 y 20', noCumple: this.passwordDoctor.length < 6 || this.passwordDoctor.length >= 20 },
-      { mensaje: 'Por lo menos un caracter especial o símbolo', noCumple: this.passwordDoctor.search(/[\W_]+/) == -1 },
-      { mensaje: 'Por lo menos un caracter Mayúscula', noCumple: this.passwordDoctor.search(/[A-Z]+/) == -1 },
-      { mensaje: 'Por lo menos un caracter minúscula', noCumple: this.passwordDoctor.search(/[a-z]+/) == -1 },
-      { mensaje: 'Por lo menos un caracter número', noCumple: this.passwordDoctor.search(/[0-9]+/) == -1 },
-      { mensaje: 'Ambas contraseña coinciden', noCumple: this.passwordDoctor != this.passwordRepDoctor },
-    ];
-    this.passwordRev = this.requisitos.findIndex(condicion => {
+    this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
+    let passwordRev = this.requisitos.findIndex(condicion => {
       return condicion.noCumple === true;
     });
-    if (this.passwordRev === -1) {
-        this.router.navigate(['/home', this.urlData]);
-        this.alertPersonalized.toastDegradable(
-        'Cambios Realizados Bienvenido al Sistema',
-        3000
-        );
-        this.passwordRev = 0;
+    if (passwordRev === -1) {
+        this.putDataService.putDoctor(this.cambiosDoctor, this.idDoctor).subscribe(data => {
+            this.router.navigate(['/home', this.urlData]);
+            this.alertPersonalized.toastDegradable(
+            'Cambios Realizados, Bienvenido al Sistema',
+            3000
+            );
+        }, err => {
+          console.log(err);
+          this.alertPersonalized.toastDegradable(
+            'Error en el Cambio',
+            2000
+          )
+        })
+        
     } else {
       this.alertPersonalized.toastDegradable(
         'Verificar la Contraseña',

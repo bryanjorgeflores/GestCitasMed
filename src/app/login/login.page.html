@@ -5,7 +5,7 @@
   <ion-input 
     type="text"
     maxlength="8" 
-    [(ngModel)]="idDoctor" 
+    [(ngModel)]="dniDoctor" 
     placeholder="DNI">
   </ion-input>
   <ion-input 
@@ -14,10 +14,10 @@
     placeholder="password">
   </ion-input>
 
-  <ion-select placeholder="Sucursal" [(ngModel)]="idSucursal">
-    <ion-select-option value="0">Sucursal 1</ion-select-option>
-    <ion-select-option value="1">Sucursal 2</ion-select-option>
-    <ion-select-option value="2">Sucursal 3</ion-select-option>
+  <ion-select placeholder="Sucursal" [(ngModel)]="idSucursal"> 
+    <div *ngFor="let sucursal of sucursales; let i = index">
+        <ion-select-option [value]="sucursal._id">{{sucursal.nombre}}</ion-select-option>
+    </div>
   </ion-select>
   <br/>
 

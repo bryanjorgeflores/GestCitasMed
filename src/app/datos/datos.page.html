@@ -9,18 +9,13 @@
   <ion-input [value]="dniDoctor" disabled></ion-input>
   <ion-input 
     type="text"
-    [(ngModel)]="nombresDoctor"
+    [(ngModel)]="cambiosDoctor.nombres"
     placeholder="Nombres">
-  </ion-input>
-  <ion-input 
-    type="text" 
-    [(ngModel)]="apellidosDoctor"
-    placeholder="Apellidos">
   </ion-input>
   <ion-input 
     type="tel"
     maxlength="9" 
-    [(ngModel)]="telefonoDoctor"
+    [(ngModel)]="cambiosDoctor.telefono"
     placeholder="Celular">
   </ion-input>
 
@@ -45,13 +40,13 @@
   <ion-input 
     type="password"
     minlength="6"
-    [(ngModel)]="passwordDoctor"
+    [(ngModel)]="cambiosDoctor.password"
     placeholder="Contraseña Nueva">
   </ion-input>
   <ion-input 
     type="password"
     minlength="6"
-    [(ngModel)]="passwordRepDoctor"
+    [(ngModel)]="passwordRep"
     placeholder="Repita Contraseña Nueva">
   </ion-input>
 

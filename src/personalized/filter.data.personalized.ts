@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { DataService } from "src/services/data.service";
+import { GetDataService } from "src/services/getdata.service";
 
 @Injectable() 
 
@@ -8,9 +8,9 @@ export class FilterData {
   doctoresTodo: any[];
   pacientesTodo: any[];
   constructor(
-    private dataService: DataService
+    private getDataService: GetDataService
   ) {
-    this.sucursales = this.dataService.getAll();
+    // this.sucursales = this.getDataService.;
 
   }
 

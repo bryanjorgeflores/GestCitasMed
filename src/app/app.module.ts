@@ -10,7 +10,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
 import { FilterData } from 'src/personalized/filter.data.personalized';
-import { DataService } from 'src/services/data.service';
+import { GetDataService } from 'src/services/getdata.service';
+import { HttpClientModule } from '@angular/common/http'
+import { PutDataService } from 'src/services/putdata.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,13 +20,15 @@ import { DataService } from 'src/services/data.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    DataService, 
+    GetDataService,
+    PutDataService, 
     AlertPersonalized,
     FilterData
   ],

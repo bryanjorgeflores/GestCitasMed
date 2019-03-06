@@ -1,723 +1,775 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Doctor } from "src/interfaces/models/doctor.model";
+import { URL } from "../personalized/config/variables.config"
+import { Sucursal } from "src/interfaces/models/sucursal.model";
+import { Paciente } from "src/interfaces/models/paciente.model";
+import { Cita } from "src/interfaces/models/cita.model";
 
 @Injectable()
 
-export class DataService {
-  sucursales: any = [
-    { id:1, 
-      nombre: 'Sucursal1', 
-      direccion: 'direccion1', 
-      encargado: 'encargado sucursal 1', 
-      doctores: [
-        { 
-          id: 'dni1', 
-          password: 'dni1', 
-          nombres: 'doctor1', 
-          edad: 30, 
-          apellidos: 'apdoctor1', 
-          telefono: '999999901', 
-          sucursal: 1 
-        },
-        { 
-          id: 'dni2', 
-          password: 'dni2', 
-          nombres: 'doctor2', 
-          edad: 35, 
-          apellidos: 'apdoctor2', 
-          telefono: '999999902', 
-          sucursal: 1 
-        }
-      ],
-      pacientes: [
-        { 
-          id: 'dni11',
-          nombres: 'paciente11', 
-          apellidos: 'appaciente11', 
-          edad: 35, 
-          telefono: '999999912', 
-          fecharegistro: 1, 
-          tipo: 'Gestante', 
-          sucursal: 1, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            }
-          ]
-        },
-        { 
-          id: 'dni13',
-          nombres: 'paciente13', 
-          apellidos: 'appaciente13', 
-          edad: 25, 
-          telefono: '999999914', 
-          fecharegistro: 3, 
-          tipo: 'Gestante', 
-          sucursal: 1, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            }
-          ]
-        },
-        { 
-          id: 'dni16',
-          nombres: 'paciente16', 
-          apellidos: 'appaciente16', 
-          edad: 0, 
-          telefono: '999999917', 
-          fecharegistro: 6, 
-          tipo: 'Vacuna', 
-          sucursal: 1, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni20',
-          nombres: 'paciente20', 
-          apellidos: 'appaciente20', 
-          edad: 25, 
-          telefono: '999999921', 
-          fecharegistro: 10, 
-          tipo: 'Gestante', 
-          sucursal: 1, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni22',
-          nombres: 'paciente22', 
-          apellidos: 'appaciente22', 
-          edad: 32, 
-          telefono: '999999923', 
-          fecharegistro: 12, 
-          tipo: 'Gestante', 
-          sucursal: 1, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        }
-      ]
-    },
-    { id:2, 
-      nombre: 'Sucursal2', 
-      direccion: 'direccion2', 
-      encargado: 'encargado sucursal 2', 
-      doctores: [
-        { 
-          id: 'dni3', 
-          password: 'dni3', 
-          nombres: 'doctor3', 
-          edad: 29, 
-          apellidos: 'apdoctor3', 
-          telefono: '999999901', 
-          sucursal: 2 
-        },
-        { 
-          id: 'dni4', 
-          password: 'dni4', 
-          nombres: 'doctor4', 
-          edad: 35, 
-          apellidos: 'apdoctor4', 
-          telefono: '999999904', 
-          sucursal: 2 
-        }
-      ],
-      pacientes: [
-        { 
-          id: 'dni12',
-          nombres: 'paciente12', 
-          apellidos: 'appaciente12', 
-          edad: 32, 
-          telefono: '999999913', 
-          fecharegistro: 2, 
-          tipo: 'Gestante', 
-          sucursal: 2, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni14',
-          nombres: 'paciente14', 
-          apellidos: 'appaciente14', 
-          edad: 2, 
-          telefono: '999999915', 
-          fecharegistro: 4, 
-          tipo: 'Vacuna', 
-          sucursal: 2, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni17',
-          nombres: 'paciente17', 
-          apellidos: 'appaciente17', 
-          edad: 1, 
-          telefono: '999999918', 
-          fecharegistro: 7, 
-          tipo: 'Vacuna', 
-          sucursal: 2, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },  
-          ]
-        },
-        { 
-          id: 'dni21',
-          nombres: 'paciente21', 
-          apellidos: 'appaciente21', 
-          edad: 35, 
-          telefono: '999999922', 
-          fecharegistro: 11, 
-          tipo: 'Gestante', 
-          sucursal: 2, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ] 
-        },
-      ]
-    },
-    { id:3, 
-      nombre: 'Sucursal3', 
-      direccion: 'direccion3', 
-      encargado: 'encargado sucursal 3', 
-      doctores: [
-        { 
-          id: 'dni5', 
-          password: 'dni5', 
-          nombres: 'doctor5', 
-          edad: 26, 
-          apellidos: 'apdoctor5', 
-          telefono: '999999905', 
-          sucursal: 3 
-        },
-        { 
-          id: 'dni6', 
-          password: 'dni6', 
-          nombres: 'doctor6', 
-          edad: 23, 
-          apellidos: 'apdoctor6', 
-          telefono: '999999906', 
-          sucursal: 3 
-        }
-      ],
-      pacientes: [
-        { 
-          id: 'dni15',
-          nombres: 'paciente15', 
-          apellidos: 'appaciente15', 
-          edad: 1, 
-          telefono: '999999916', 
-          fecharegistro: 5, 
-          tipo: 'Vacuna', 
-          sucursal: 3, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni18',
-          nombres: 'paciente18', 
-          apellidos: 'appaciente18', 
-          edad: 2, 
-          telefono: '999999919', 
-          fecharegistro: 8, 
-          tipo: 'Vacuna', 
-          sucursal: 3, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-        { 
-          id: 'dni19',
-          nombres: 'paciente19', 
-          apellidos: 'appaciente19', 
-          edad: 3, 
-          telefono: '999999920', 
-          fecharegistro: 9, 
-          tipo: 'Vacuna', 
-          sucursal: 3, 
-          citas: [
-            {
-              id: 1,
-              dosis: 'dosis01', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 1', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 2,
-              dosis: 'dosis02', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 2', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni1', 
-              sucursal: 1 
-            },
-            {
-              id: 3,
-              dosis: 'dosis03', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 3', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-            {
-              id: 4,
-              dosis: 'dosis04', 
-              descripcion: 'descripcion de la cita realizada por tal doctor 4', 
-              estado: true, 
-              fechaprogramada: 14, 
-              fechaejecutada: 16, 
-              doctor: 'dni2', 
-              sucursal: 1 
-            },
-          ]
-        },
-      ]
-    }
-  ];
-
-  constructor() {
-
+export class GetDataService {
+  constructor(
+    public http: HttpClient
+  ) {
+  }
+  getSucursales(): Observable<Array<Sucursal>> {
+    return this.http.get<Array<Sucursal>>(`${URL}/sucursales`);
+  }
+  getDoctoresBySucursal(idSucursal: string): Observable<Array<Doctor>> {
+    return this.http.get<Array<Doctor>>(`${URL}/pacientes/${idSucursal}`);
+  }
+  getDoctor(dni: string): Observable<Doctor> {
+    return this.http.get<Doctor>(`${URL}/doctor/${dni}`);
+  }
+  getPacientesBySucursal(idSucursal: string): Observable<Array<Paciente>> {
+    return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}`);
   }
 
-  getAll() {
-    return this.sucursales;
+  getPacienteBySucursalAndType(idSucursal: string, tipo: string): Observable<Array<Paciente>> {
+    return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}/${tipo}`)
   }
+
+  getPaciente(id: string): Observable<Paciente> {
+    return this.http.get<Paciente>(`${URL}/paciente/${id}`);
+  }
+
+  getCitas(idPaciente: string): Observable<Array<Cita>> {
+    return this.http.get<Array<Cita>>(`${URL}/citas/${idPaciente}`);
+  }
+
+  getCita(id: string): Observable<Cita> {
+    return this.http.get<Cita>(`${URL}/cita/${id}`);
+  }
+
+  getDNI(dni: string): Observable<string>{
+    return this.http.get<string>(`${URL}/dni/${dni}`);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  // sucursales: any = [
+  //   { id:1, 
+  //     nombre: 'Sucursal1', 
+  //     direccion: 'direccion1', 
+  //     encargado: 'encargado sucursal 1', 
+  //     doctores: [
+  //       { 
+  //         id: 'dni1', 
+  //         password: 'dni1', 
+  //         nombres: 'doctor1', 
+  //         edad: 30, 
+  //         apellidos: 'apdoctor1', 
+  //         telefono: '999999901', 
+  //         sucursal: 1 
+  //       },
+  //       { 
+  //         id: 'dni2', 
+  //         password: 'dni2', 
+  //         nombres: 'doctor2', 
+  //         edad: 35, 
+  //         apellidos: 'apdoctor2', 
+  //         telefono: '999999902', 
+  //         sucursal: 1 
+  //       }
+  //     ],
+  //     pacientes: [
+  //       { 
+  //         id: 'dni11',
+  //         nombres: 'paciente11', 
+  //         apellidos: 'appaciente11', 
+  //         edad: 35, 
+  //         telefono: '999999912', 
+  //         fecharegistro: 1, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 1, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           }
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni13',
+  //         nombres: 'paciente13', 
+  //         apellidos: 'appaciente13', 
+  //         edad: 25, 
+  //         telefono: '999999914', 
+  //         fecharegistro: 3, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 1, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           }
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni16',
+  //         nombres: 'paciente16', 
+  //         apellidos: 'appaciente16', 
+  //         edad: 0, 
+  //         telefono: '999999917', 
+  //         fecharegistro: 6, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 1, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni20',
+  //         nombres: 'paciente20', 
+  //         apellidos: 'appaciente20', 
+  //         edad: 25, 
+  //         telefono: '999999921', 
+  //         fecharegistro: 10, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 1, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni22',
+  //         nombres: 'paciente22', 
+  //         apellidos: 'appaciente22', 
+  //         edad: 32, 
+  //         telefono: '999999923', 
+  //         fecharegistro: 12, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 1, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       }
+  //     ]
+  //   },
+  //   { id:2, 
+  //     nombre: 'Sucursal2', 
+  //     direccion: 'direccion2', 
+  //     encargado: 'encargado sucursal 2', 
+  //     doctores: [
+  //       { 
+  //         id: 'dni3', 
+  //         password: 'dni3', 
+  //         nombres: 'doctor3', 
+  //         edad: 29, 
+  //         apellidos: 'apdoctor3', 
+  //         telefono: '999999901', 
+  //         sucursal: 2 
+  //       },
+  //       { 
+  //         id: 'dni4', 
+  //         password: 'dni4', 
+  //         nombres: 'doctor4', 
+  //         edad: 35, 
+  //         apellidos: 'apdoctor4', 
+  //         telefono: '999999904', 
+  //         sucursal: 2 
+  //       }
+  //     ],
+  //     pacientes: [
+  //       { 
+  //         id: 'dni12',
+  //         nombres: 'paciente12', 
+  //         apellidos: 'appaciente12', 
+  //         edad: 32, 
+  //         telefono: '999999913', 
+  //         fecharegistro: 2, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 2, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni14',
+  //         nombres: 'paciente14', 
+  //         apellidos: 'appaciente14', 
+  //         edad: 2, 
+  //         telefono: '999999915', 
+  //         fecharegistro: 4, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 2, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni17',
+  //         nombres: 'paciente17', 
+  //         apellidos: 'appaciente17', 
+  //         edad: 1, 
+  //         telefono: '999999918', 
+  //         fecharegistro: 7, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 2, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },  
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni21',
+  //         nombres: 'paciente21', 
+  //         apellidos: 'appaciente21', 
+  //         edad: 35, 
+  //         telefono: '999999922', 
+  //         fecharegistro: 11, 
+  //         tipo: 'Gestante', 
+  //         sucursal: 2, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ] 
+  //       },
+  //     ]
+  //   },
+  //   { id:3, 
+  //     nombre: 'Sucursal3', 
+  //     direccion: 'direccion3', 
+  //     encargado: 'encargado sucursal 3', 
+  //     doctores: [
+  //       { 
+  //         id: 'dni5', 
+  //         password: 'dni5', 
+  //         nombres: 'doctor5', 
+  //         edad: 26, 
+  //         apellidos: 'apdoctor5', 
+  //         telefono: '999999905', 
+  //         sucursal: 3 
+  //       },
+  //       { 
+  //         id: 'dni6', 
+  //         password: 'dni6', 
+  //         nombres: 'doctor6', 
+  //         edad: 23, 
+  //         apellidos: 'apdoctor6', 
+  //         telefono: '999999906', 
+  //         sucursal: 3 
+  //       }
+  //     ],
+  //     pacientes: [
+  //       { 
+  //         id: 'dni15',
+  //         nombres: 'paciente15', 
+  //         apellidos: 'appaciente15', 
+  //         edad: 1, 
+  //         telefono: '999999916', 
+  //         fecharegistro: 5, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 3, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni18',
+  //         nombres: 'paciente18', 
+  //         apellidos: 'appaciente18', 
+  //         edad: 2, 
+  //         telefono: '999999919', 
+  //         fecharegistro: 8, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 3, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //       { 
+  //         id: 'dni19',
+  //         nombres: 'paciente19', 
+  //         apellidos: 'appaciente19', 
+  //         edad: 3, 
+  //         telefono: '999999920', 
+  //         fecharegistro: 9, 
+  //         tipo: 'Vacuna', 
+  //         sucursal: 3, 
+  //         citas: [
+  //           {
+  //             id: 1,
+  //             dosis: 'dosis01', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 1', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 2,
+  //             dosis: 'dosis02', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 2', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni1', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 3,
+  //             dosis: 'dosis03', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 3', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //           {
+  //             id: 4,
+  //             dosis: 'dosis04', 
+  //             descripcion: 'descripcion de la cita realizada por tal doctor 4', 
+  //             estado: true, 
+  //             fechaprogramada: 14, 
+  //             fechaejecutada: 16, 
+  //             doctor: 'dni2', 
+  //             sucursal: 1 
+  //           },
+  //         ]
+  //       },
+  //     ]
+  //   }
+  // ];
+
+
+  // getAll() {
+  //   return this.sucursales;
+  // }
 
 }
 
