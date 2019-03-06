@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Archivo } from 'src/interfaces/archivo';
 import { Tarjeta } from 'src/interfaces/tarjeta';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-herramientas',
@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./herramientas.page.scss'],
 })
 export class HerramientasPage implements OnInit {
-
+  urlData: string = '';
   archivos : Archivo[];
   tarjetas : Tarjeta[];
   constructor(
-    private router: Router
+    private router: Router,
+    public activatedRoute: ActivatedRoute
   ) {
     let archivo1: Archivo = {
       nombre: 'Archivo 1',
@@ -82,5 +83,6 @@ export class HerramientasPage implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.snapshot.paramMap.get('datos')
   }
 }

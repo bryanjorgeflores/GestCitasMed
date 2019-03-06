@@ -1,5 +1,5 @@
 export interface Cita {
-  _id?: string,
+  _?: string,
   number: number,
   tratamiento: string,
   descripcion: string,

@@ -28,7 +28,7 @@ export class GetDataService {
   }
 
   getPacienteBySucursalAndType(idSucursal: string, tipo: string): Observable<Array<Paciente>> {
-    return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}/${tipo}`)
+    return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}/${tipo}`);
   }
 
   getPaciente(id: string): Observable<Paciente> {

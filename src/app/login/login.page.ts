@@ -52,13 +52,14 @@ export class LoginPage implements OnInit {
     this.getDataService.getDoctor(this.dniDoctor).subscribe(doctor => {
       console.log(doctor);
       if (doctor && this.passwordDoctor == doctor.password) {
-        this.urlData = `${doctor._id}-${this.dniDoctor}`;
+        this.urlData = `${doctor._id}-${this.dniDoctor}-${doctor.sucursal}`;
+        localStorage.setItem('urldata', this.urlData);
         console.log(doctor);
           if (doctor.password == doctor.dni) {
             this.router.navigate(['/datos', this.urlData]);
               console.log(this.urlData);
           } else {
-            this.router.navigate(['/home', this.urlData]);
+            this.router.navigate(['/list', this.urlData]);
           }
       } else {
         this.alertPersonalized.toastDegradable(

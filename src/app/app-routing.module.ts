@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'list/init',
     pathMatch: 'full'
   },
   {
@@ -12,27 +12,27 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list',
+    path: 'list/:datos',
     loadChildren: './list/list.module#ListPageModule'
   },
   {
-    path: 'login', 
+    path: 'login/:datos', 
     loadChildren: './login/login.module#LoginPageModule' 
   },
   {
-    path: 'solicitud', 
+    path: 'solicitud/:datos', 
     loadChildren: './solicitud/solicitud.module#SolicitudPageModule' 
   },
   {
-    path: 'chequeo/:paciente', 
+    path: 'chequeo/:datos', 
     loadChildren: './chequeo/chequeo.module#ChequeoPageModule'
   },
   { 
-    path: 'registropaciente', 
+    path: 'registropaciente/:datos', 
     loadChildren: './registropaciente/registropaciente.module#RegistropacientePageModule' 
   },
   { 
-    path: 'herramientas', 
+    path: 'herramientas/:datos', 
     loadChildren: './herramientas/herramientas.module#HerramientasPageModule'
   },
   { 

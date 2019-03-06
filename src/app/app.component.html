@@ -9,7 +9,7 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle auto-hide="false">
-            <ion-item [routerDirection]="'root'" [routerLink]="['/home']">
+            <ion-item [routerDirection]="'root'" (click)="goTo('/list')">
               <ion-icon slot="start" name="home"></ion-icon>
               <ion-label>
                 Home
@@ -20,7 +20,7 @@
             </ion-item>
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+            <ion-item (click)="goTo(p.url)">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>
                 {{p.title}}

@@ -20,8 +20,8 @@ export class DatosPage implements OnInit {
   urlData: string = '';
   cambiosDoctor: any = {
     nombres: '',
-    telefono: '123',
-    password: '456'
+    telefono: '',
+    password: ''
   }
   
 
@@ -38,12 +38,14 @@ export class DatosPage implements OnInit {
 
   ngOnInit() {
     this.urlData = this.activatedRouter.snapshot.paramMap.get('datos');
+    localStorage.setItem('urldata', this.urlData);
     this.idDoctor = this.urlData.split('-')[0];
     this.dniDoctor = this.urlData.split('-')[1];
     this.getDataService.getDNI(this.dniDoctor).subscribe((data: any) => {
       this.cambiosDoctor.nombres = data.nombres;
     })
     this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
+    
   }
 
   aplicarCambios() {
@@ -53,7 +55,7 @@ export class DatosPage implements OnInit {
     });
     if (passwordRev === -1) {
         this.putDataService.putDoctor(this.cambiosDoctor, this.idDoctor).subscribe(data => {
-            this.router.navigate(['/home', this.urlData]);
+            this.router.navigate(['/list', this.urlData]);
             this.alertPersonalized.toastDegradable(
             'Cambios Realizados, Bienvenido al Sistema',
             3000

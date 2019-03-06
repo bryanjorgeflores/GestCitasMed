@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -6,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  constructor() {
-
+  urlData: string = '';
+  constructor(
+    public activatedRoute: ActivatedRoute
+  ) {
+    
   }
 
   ngOnInit() {
+    this.urlData = this.activatedRoute.snapshot.paramMap.get('datos');
+    localStorage.setItem('urldata', this.urlData);
   }
 }
 

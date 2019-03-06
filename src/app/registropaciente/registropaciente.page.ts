@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-registropaciente',
@@ -7,15 +8,18 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./registropaciente.page.scss'],
 })
 export class RegistropacientePage implements OnInit {
+  urlData: string = '';
   nombrePaciente: string = '';
   celularPaciente: string = '';
   tratoPaciente: string = '';
   fechaHoy: number = 130;
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.urlData = this.activatedRoute.snapshot.paramMap.get('datos');
   }
   async abrirDiasCita() {
     const alert = await this.alertCtrl.create({
