@@ -4,15 +4,21 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Paciente A
+      Paciente
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-<ul>
-  <li *ngFor="let cita of citas">
-    {{cita.fecha}} - {{cita.estado}} - {{cita.descripcion}}
-  </li>
-</ul>
+<ion-list>
+  <div *ngFor="let cita of citas" color="primary">
+    <ion-item [routerLink]="['/solicitud', cita._id]">
+      <ion-label>
+        <ion-text>Cita {{cita.numero}}</ion-text>
+        <ion-text>{{cita.estado}}</ion-text>
+        <ion-text>{{cita.fechaprogramada}}</ion-text>
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-list>
 </ion-content>

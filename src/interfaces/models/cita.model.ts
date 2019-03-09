@@ -1,11 +1,11 @@
 export interface Cita {
-  _?: string,
-  number: number,
+  _id?: string,
+  numero: number,
   tratamiento: string,
   descripcion: string,
   estado: boolean,
-  fechaprogramada: Date,
-  fechaejecutada: Date,
+  fechaProgramada: number,
+  fechaTratada: number,
   doctor: string,
   sucursal: string
 }

@@ -35,7 +35,7 @@ export class HomePage {
     this.tipoPaciente = this.activatedRoute.snapshot.paramMap.get('datos');
     this.idSucursal = localStorage.getItem('urldata').split('-')[2];
     
-    this.getDataService.getPacienteBySucursalAndType(this.idSucursal, this.tipoPaciente).subscribe((pacientes: Array<Paciente>) => {
+    this.getDataService.getPacientesBySucursalAndType(this.idSucursal, this.tipoPaciente).subscribe((pacientes: Array<Paciente>) => {
       this.pacientes = pacientes;
     });
   }

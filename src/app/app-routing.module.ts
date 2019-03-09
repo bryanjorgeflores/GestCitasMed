@@ -20,11 +20,11 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginPageModule' 
   },
   {
-    path: 'solicitud/:datos', 
+    path: 'solicitud/:cita', 
     loadChildren: './solicitud/solicitud.module#SolicitudPageModule' 
   },
   {
-    path: 'chequeo/:datos', 
+    path: 'chequeo/:paciente', 
     loadChildren: './chequeo/chequeo.module#ChequeoPageModule'
   },
   { 

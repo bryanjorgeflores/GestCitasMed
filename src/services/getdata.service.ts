@@ -27,7 +27,7 @@ export class GetDataService {
     return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}`);
   }
 
-  getPacienteBySucursalAndType(idSucursal: string, tipo: string): Observable<Array<Paciente>> {
+  getPacientesBySucursalAndType(idSucursal: string, tipo: string): Observable<Array<Paciente>> {
     return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}/${tipo}`);
   }
 
@@ -39,7 +39,7 @@ export class GetDataService {
     return this.http.get<Array<Cita>>(`${URL}/citas/${idPaciente}`);
   }
 
-  getCita(id: string): Observable<Cita> {
+  getCita(id: string): Observable<Cita>{
     return this.http.get<Cita>(`${URL}/cita/${id}`);
   }
 
