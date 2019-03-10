@@ -5,7 +5,7 @@ import { Doctor } from "src/interfaces/models/doctor.model";
 import { URL } from "../personalized/config/variables.config"
 import { Sucursal } from "src/interfaces/models/sucursal.model";
 import { Paciente } from "src/interfaces/models/paciente.model";
-import { Cita } from "src/interfaces/models/cita.model";
+import { Citas } from "src/interfaces/models/citas.model";
 
 @Injectable()
 
@@ -30,21 +30,20 @@ export class GetDataService {
   getPacientesBySucursalAndType(idSucursal: string, tipo: string): Observable<Array<Paciente>> {
     return this.http.get<Array<Paciente>>(`${URL}/pacientes/${idSucursal}/${tipo}`);
   }
-
   getPaciente(id: string): Observable<Paciente> {
     return this.http.get<Paciente>(`${URL}/paciente/${id}`);
   }
-
-  getCitas(idPaciente: string): Observable<Array<Cita>> {
-    return this.http.get<Array<Cita>>(`${URL}/citas/${idPaciente}`);
+  getCitas(id: string): Observable<Array<Object>> {
+    return this.http.get<Array<Object>>(`${URL}/citas/${id}`);
   }
-
-  getCita(id: string): Observable<Cita>{
-    return this.http.get<Cita>(`${URL}/cita/${id}`);
+  getCitasByPaciente(idPaciente: string): Observable<Array<Object>> {
+    return this.http.get<Array<Object>>(`${URL}/paciente/citas/${idPaciente}`);
   }
-
-  getDNI(dni: string): Observable<string>{
-    return this.http.get<string>(`${URL}/dni/${dni}`);
+  getCita(id: string, index: number): Observable<Object>{
+    return this.http.get<Object>(`${URL}/cita/${id}/${index}`);
+  }
+  getDNI(dni: string): Observable<Object>{
+    return this.http.get<Object>(`${URL}/dni/${dni}`);
   }
 
 

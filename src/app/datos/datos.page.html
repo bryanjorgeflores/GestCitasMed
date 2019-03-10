@@ -22,6 +22,12 @@
     placeholder="Celular">
   </ion-input>
 
+  <ion-select placeholder="Sucursal" [(ngModel)]="cambiosDoctor.sucursal"> 
+    <div *ngFor="let sucursal of sucursales; let i = index">
+        <ion-select-option [value]="sucursal._id">{{sucursal.nombre}}</ion-select-option>
+    </div>
+  </ion-select>
+
   <ol>
     <li *ngFor="let requisito of requisitos">
       <ion-text

@@ -9,7 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./herramientas.page.scss'],
 })
 export class HerramientasPage implements OnInit {
-  urlData: string = '';
   archivos : Archivo[];
   tarjetas : Tarjeta[];
   constructor(
@@ -83,6 +82,5 @@ export class HerramientasPage implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.snapshot.paramMap.get('datos')
   }
 }

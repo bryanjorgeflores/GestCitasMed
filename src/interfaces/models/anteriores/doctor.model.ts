@@ -4,6 +4,7 @@ export interface Doctor {
   password: string,
   nombres: string,
   telefono: string,
-  pacientes?: [string],
+  pacientes: [string],
   sucursal : string
+
 }

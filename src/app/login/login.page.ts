@@ -12,34 +12,20 @@ import { Sucursal } from 'src/interfaces/models/sucursal.model';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  idDoctor: string = '';
   passwordDoctor: string = '';
-  indexDoctor: number = 0;
-  idSucursal: string = '';
   doctor: any = {};
-  sucursal: any = {};
-  urlData: string = '';
-  alertaLogin: string = '';
-  sucursales: Array<Sucursal>;
   dniDoctor: string = '';
 
   constructor(
     private alertPersonalized: AlertPersonalized,
     public router: Router,
-    private getDataService: GetDataService,
-    private filterData: FilterData
-    
+    private getDataService: GetDataService
   ) { 
     
     
   }
 
   ngOnInit() {
-    this.getDataService.getSucursales().subscribe((data) => {
-      this.sucursales = data;
-    }, err => {
-      console.log(err);
-    });
   }
 
   ingresar() {
@@ -52,14 +38,13 @@ export class LoginPage implements OnInit {
     this.getDataService.getDoctor(this.dniDoctor).subscribe(doctor => {
       console.log(doctor);
       if (doctor && this.passwordDoctor == doctor.password) {
-        this.urlData = `${doctor._id}-${this.dniDoctor}-${doctor.sucursal}`;
-        localStorage.setItem('urldata', this.urlData);
-        console.log(doctor);
+        this.doctor = doctor;
+        localStorage.setItem('doctor', JSON.stringify(this.doctor));
+        localStorage.setItem('idsucursal', this.doctor.sucursal);
           if (doctor.password == doctor.dni) {
-            this.router.navigate(['/datos', this.urlData]);
-              console.log(this.urlData);
+            this.router.navigate(['/datos']);
           } else {
-            this.router.navigate(['/list', this.urlData]);
+            this.router.navigate(['/list']);
           }
       } else {
         this.alertPersonalized.toastDegradable(

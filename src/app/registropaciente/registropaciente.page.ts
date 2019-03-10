@@ -8,18 +8,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./registropaciente.page.scss'],
 })
 export class RegistropacientePage implements OnInit {
-  urlData: string = '';
   nombrePaciente: string = '';
   celularPaciente: string = '';
-  tratoPaciente: string = '';
+  tipoPaciente: string = '';
   fechaHoy: number = 130;
   constructor(
     private alertCtrl: AlertController,
-    public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.urlData = this.activatedRoute.snapshot.paramMap.get('datos');
+    this.tipoPaciente = localStorage.getItem('tipopaciente');
   }
   async abrirDiasCita() {
     const alert = await this.alertCtrl.create({

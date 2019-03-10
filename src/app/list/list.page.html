@@ -15,12 +15,12 @@
       <ion-item 
         color="light" 
         style="border:1px solid rgb(255,255,255);"
-        [routerLink]="['/home', 'vacuna']">
+        (click)="goToPacientesVacuna()">
 
         <ion-thumbnail>
           <img 
             style="border-radius:50%" 
-            src="http://lorempixel.com/350/230/">
+            src="">
         </ion-thumbnail>
         <ion-label align="center">Vacunas</ion-label>
         <ion-badge color="warning" slot="end" style="border:1px solid black">11</ion-badge>
@@ -43,12 +43,12 @@
       <ion-item 
         color="tertiary" 
         style="border:1px solid rgb(255,255,255);"
-        [routerLink]="['/home', 'embarazo']">
+        (click)="goToPacientesEmbarazo()">
 
         <ion-thumbnail>
           <img 
             style="border-radius:50%" 
-            src="http://lorempixel.com/350/230/">
+            src="">
         </ion-thumbnail>
 
         <ion-label align="center">Gestante</ion-label>
@@ -71,15 +71,15 @@
       <ion-item 
         color="warning" 
         style="border:1px solid rgb(255,255,255);"
-        [routerLink]="['/home', 'crid']">
+        (click)="goToPacientesCred()">
 
         <ion-thumbnail>
           <img 
             style="border-radius:50%" 
-            src="http://lorempixel.com/350/230/">
+            src="">
         </ion-thumbnail>
 
-        <ion-label align="center">CRID</ion-label>
+        <ion-label align="center">CRED</ion-label>
         <ion-badge color="warning" slot="end" style="border:1px solid black">11</ion-badge>
         <ion-badge color="success" slot="end" style="border:1px solid black">11</ion-badge>
         <ion-badge color="danger" slot="end" style="border:1px solid black">11</ion-badge>
@@ -97,11 +97,11 @@
 
     <ion-item
       style="background-color:#86888f;border:1px solid rgb(255,255,255);border-radius:10px;"
-      [routerLink]="['/herramientas', urlData]">
+      [routerLink]="['/herramientas']">
       <ion-thumbnail>
         <img 
           style="border-radius:50%" 
-          src="http://lorempixel.com/350/230/">
+          src="">
       </ion-thumbnail>
       <ion-label>
         <ion-text>

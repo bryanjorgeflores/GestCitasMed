@@ -11,12 +11,12 @@
 
 <ion-content padding>
 <ion-list>
-  <div *ngFor="let cita of citas" color="primary">
-    <ion-item [routerLink]="['/solicitud', cita._id]">
+  <div *ngFor="let sesion of sesiones" color="primary">
+    <ion-item (click)="goToSesion(sesion)">
       <ion-label>
-        <ion-text>Cita {{cita.numero}}</ion-text>
-        <ion-text>{{cita.estado}}</ion-text>
-        <ion-text>{{cita.fechaprogramada}}</ion-text>
+        <ion-text>Sesión {{sesion.numero}}</ion-text>
+        <ion-text>{{sesion.estado}}</ion-text>
+        <ion-text>{{sesion.fechaprogramada}}</ion-text>
       </ion-label>
     </ion-item>
   </div>

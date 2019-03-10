@@ -16,12 +16,12 @@
       *ngFor="let paciente of pacientes">
 
       <ion-item 
-        [routerLink]="['/chequeo', paciente._id]">
+        [routerLink]="['/chequeo', paciente.citas]">
 
         <ion-thumbnail>
           <img 
             style="border-radius:50%" 
-            src="http://lorempixel.com/350/230/">
+            src="">
         </ion-thumbnail>
 
         <ion-label 
@@ -45,7 +45,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button [routerLink]="['/registropaciente', urlData]">
+      <ion-fab-button [routerLink]="['/registropaciente']">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
   </ion-fab>

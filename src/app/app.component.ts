@@ -41,11 +41,9 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      localStorage.setItem('urldata', '123');
     });
   }
   goTo(ruta: string) {
-    let urlData = localStorage.getItem('urldata');
-    this.router.navigate([ruta, urlData]);
+    this.router.navigate([ruta]);
   }
 }

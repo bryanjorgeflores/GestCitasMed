@@ -5,6 +5,8 @@ import { AlertPersonalized } from 'src/personalized/alert.personalized';
 import { requisitosPassword } from 'src/personalized/config/variables.config';
 import { PutDataService } from 'src/services/putdata.service';
 import { GetDataService } from 'src/services/getdata.service';
+import { Doctor } from 'src/interfaces/models/anteriores/doctor.model';
+import { Sucursal } from 'src/interfaces/models/sucursal.model';
 
 @Component({
   selector: 'app-datos',
@@ -12,40 +14,48 @@ import { GetDataService } from 'src/services/getdata.service';
   styleUrls: ['./datos.page.scss'],
 })
 export class DatosPage implements OnInit {
-  doctor: any = {};
-  dniDoctor: string = '';
+  doctor: Doctor = {
+    _id: '',
+    dni: '',
+    password: '',
+    nombres: '',
+    pacientes: [''],
+    telefono: '',
+    sucursal: ''
+  };
+  sucursales: Array<Sucursal>;
   passwordRep: string = '';
-  idDoctor: string = '';
   requisitos: Array<any>;
-  urlData: string = '';
+
   cambiosDoctor: any = {
     nombres: '',
     telefono: '',
-    password: ''
-  }
-  
+    password: '',
+    sucursal: ''
+  };  
 
   constructor(
     public activatedRouter: ActivatedRoute,
     public router: Router,
     private putDataService: PutDataService,
     private getDataService: GetDataService,
-    private filterData:FilterData,
     private alertPersonalized: AlertPersonalized,
   ) { 
     // this.doctor = this.filterData.getDoctorByIndex(Number(this.urlData.idSucursal), this.urlData.idDoctor);
   }
 
   ngOnInit() {
-    this.urlData = this.activatedRouter.snapshot.paramMap.get('datos');
-    localStorage.setItem('urldata', this.urlData);
-    this.idDoctor = this.urlData.split('-')[0];
-    this.dniDoctor = this.urlData.split('-')[1];
-    this.getDataService.getDNI(this.dniDoctor).subscribe((data: any) => {
+    this.getDataService.getSucursales().subscribe((data) => {
+      this.sucursales = data;
+    }, err => {
+      console.log(err);
+    });
+    this.doctor = JSON.parse(localStorage.getItem('doctor'));
+    this.getDataService.getDNI(this.doctor.dni).subscribe((data: any) => {
       this.cambiosDoctor.nombres = data.nombres;
-    })
+    });
     this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
-    
+    this.cambiosDoctor.telefono = this.doctor.telefono;
   }
 
   aplicarCambios() {
@@ -54,19 +64,19 @@ export class DatosPage implements OnInit {
       return condicion.noCumple === true;
     });
     if (passwordRev === -1) {
-        this.putDataService.putDoctor(this.cambiosDoctor, this.idDoctor).subscribe(data => {
-            this.router.navigate(['/list', this.urlData]);
-            this.alertPersonalized.toastDegradable(
-            'Cambios Realizados, Bienvenido al Sistema',
-            3000
-            );
-        }, err => {
-          console.log(err);
-          this.alertPersonalized.toastDegradable(
-            'Error en el Cambio',
-            2000
-          )
-        })
+      this.putDataService.putDoctor(this.cambiosDoctor, this.doctor._id).subscribe(() => {
+        this.alertPersonalized.toastDegradable(
+          'Cambios Realizados, Bienvenido alSistema',
+          3000
+        );
+        this.router.navigate(['/list']);
+      }, err => {
+        console.log(err);
+        this.alertPersonalized.toastDegradable(
+          'Error en el Cambio',
+          2000
+        )
+      })
         
     } else {
       this.alertPersonalized.toastDegradable(

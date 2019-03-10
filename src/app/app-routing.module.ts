@@ -4,35 +4,35 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list/init',
+    redirectTo: 'list',
     pathMatch: 'full'
   },
   {
-    path: 'home/:datos',
+    path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list/:datos',
+    path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
   {
-    path: 'login/:datos', 
+    path: 'login', 
     loadChildren: './login/login.module#LoginPageModule' 
   },
   {
-    path: 'solicitud/:cita', 
+    path: 'solicitud', 
     loadChildren: './solicitud/solicitud.module#SolicitudPageModule' 
   },
   {
-    path: 'chequeo/:paciente', 
+    path: 'chequeo/:idcitas', 
     loadChildren: './chequeo/chequeo.module#ChequeoPageModule'
   },
   { 
-    path: 'registropaciente/:datos', 
+    path: 'registropaciente', 
     loadChildren: './registropaciente/registropaciente.module#RegistropacientePageModule' 
   },
   { 
-    path: 'herramientas/:datos', 
+    path: 'herramientas', 
     loadChildren: './herramientas/herramientas.module#HerramientasPageModule'
   },
   { 
@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: './imagenes/imagenes.module#ImagenesPageModule' 
   },
   { 
-    path: 'datos/:datos', 
+    path: 'datos', 
     loadChildren: './datos/datos.module#DatosPageModule' 
   }
 ];

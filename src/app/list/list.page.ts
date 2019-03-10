@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Doctor } from 'src/interfaces/models/doctor.model';
 
 @Component({
   selector: 'app-list',
@@ -7,17 +8,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  urlData: string = '';
   constructor(
-    public activatedRoute: ActivatedRoute
+    public router: Router
   ) {
     
   }
 
   ngOnInit() {
-    this.urlData = this.activatedRoute.snapshot.paramMap.get('datos');
-    localStorage.setItem('urldata', this.urlData);
   }
+  goToPacientesVacuna() {
+    localStorage.setItem('tipopaciente', 'vacuna');
+    this.router.navigate(['/home']);
+  }
+  goToPacientesEmbarazo() {
+    localStorage.setItem('tipopaciente', 'embarazo');
+    this.router.navigate(['/home']);
+  }
+  goToPacientesCred() {
+    localStorage.setItem('tipopaciente', 'cred');
+    this.router.navigate(['/home']);
+  }
+
+
 }
 
   // private selectedItem: any;

@@ -8,6 +8,5 @@ export interface Paciente {
   fecharegistro: Date,
   sucursal: string,
   ultimodoctor: string,
-  citaproxima: number,
-  citas: string
+  citas: [string]
 }

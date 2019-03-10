@@ -14,11 +14,6 @@
     placeholder="password">
   </ion-input>
 
-  <ion-select placeholder="Sucursal" [(ngModel)]="idSucursal"> 
-    <div *ngFor="let sucursal of sucursales; let i = index">
-        <ion-select-option [value]="sucursal._id">{{sucursal.nombre}}</ion-select-option>
-    </div>
-  </ion-select>
   <br/>
 
   <ion-button 

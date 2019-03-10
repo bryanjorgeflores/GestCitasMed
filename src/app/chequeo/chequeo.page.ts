@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FilterData } from 'src/personalized/filter.data.personalized';
 import { GetDataService } from 'src/services/getdata.service';
-import { Cita } from 'src/interfaces/models/cita.model';
+import { Citas } from 'src/interfaces/models/citas.model';
 import { Paciente } from 'src/interfaces/models/paciente.model';
 
 @Component({
@@ -11,13 +11,14 @@ import { Paciente } from 'src/interfaces/models/paciente.model';
   styleUrls: ['./chequeo.page.scss'],
 })
 export class ChequeoPage implements OnInit {
-  citas: Array<Cita>;
+  sesiones: Array<Object>;
   paciente: Paciente;
   constructor(
     private route: ActivatedRoute,
     private filterData: FilterData,
     public activatedRoute: ActivatedRoute,
-    private getDataService: GetDataService
+    private getDataService: GetDataService,
+    public router: Router
     ) {
       // this.paciente = this.filterData.getPaciente(this.route.snapshot.paramMap.get('paciente'));
       // console.log(this.paciente);
@@ -25,11 +26,14 @@ export class ChequeoPage implements OnInit {
    }
 
   ngOnInit() {
-    let idPaciente = this.activatedRoute.snapshot.paramMap.get('paciente');
-    this.getDataService.getCitas(idPaciente).subscribe((citas: Array<Cita>) => {
-      this.citas = citas;
+    let idCitas = this.activatedRoute.snapshot.paramMap.get('idcitas');
+    localStorage.setItem('idcitas', idCitas);
+    this.getDataService.getCitas(idCitas).subscribe((sesiones: Array<Object>) => {
+      this.sesiones = sesiones;
     });
-    console.log(this.citas);
   }
-
+  goToSesion(sesion: any) {
+    localStorage.setItem('indexsesion', sesion.numero);
+    this.router.navigate(['/solicitud'], sesion.numero);
+  }
 }
