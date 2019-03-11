@@ -41,7 +41,6 @@ export class DatosPage implements OnInit {
     private getDataService: GetDataService,
     private alertPersonalized: AlertPersonalized,
   ) { 
-    // this.doctor = this.filterData.getDoctorByIndex(Number(this.urlData.idSucursal), this.urlData.idDoctor);
   }
 
   ngOnInit() {

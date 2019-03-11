@@ -20,9 +20,6 @@ export class ChequeoPage implements OnInit {
     private getDataService: GetDataService,
     public router: Router
     ) {
-      // this.paciente = this.filterData.getPaciente(this.route.snapshot.paramMap.get('paciente'));
-      // console.log(this.paciente);
-      // this.citas = this.paciente.citas;
    }
 
   ngOnInit() {

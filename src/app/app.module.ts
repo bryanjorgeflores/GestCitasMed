@@ -13,6 +13,7 @@ import { FilterData } from 'src/personalized/filter.data.personalized';
 import { GetDataService } from 'src/services/getdata.service';
 import { HttpClientModule } from '@angular/common/http'
 import { PutDataService } from 'src/services/putdata.service';
+import { PostDataService } from 'src/services/postdata.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { PutDataService } from 'src/services/putdata.service';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     GetDataService,
-    PutDataService, 
+    PutDataService,
+    PostDataService, 
     AlertPersonalized,
     FilterData
   ],

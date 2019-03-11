@@ -19,12 +19,8 @@ export class HomePage {
     private alertPersonalized: AlertPersonalized,
     private getDataService: GetDataService
   ) {  
-    // this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
   }
   
-  // irARegistroPaciente() {
-  //   this.router.navigate(['/registropaciente']);
-  // }
   ngOnInit() {
     this.idSucursal = localStorage.getItem('idsucursal');
     this.tipoPaciente = localStorage.getItem('tipopaciente');
@@ -33,6 +29,7 @@ export class HomePage {
       this.pacientes = pacientes;
     });
   }
+  
   llamarPaciente(paciente: any) {
     this.alertPersonalized.alertAcept(
       'Llamando', 
@@ -42,13 +39,4 @@ export class HomePage {
     );
   }
 
-  // getTodoPacientes() {
-  //   this.pacientes = this.filterPacientes.getAllPacientes();
-  // }
-  // getRetrasoPacientes() {
-  //   this.pacientes = this.filterPacientes.getPacientesRetrasoOrden();
-  // }
-  // getEsperaPacientes() {
-  //   this.pacientes = this.filterPacientes.getPacientesEsperaOrden();
-  // }
 }

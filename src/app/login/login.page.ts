@@ -29,17 +29,12 @@ export class LoginPage implements OnInit {
   }
 
   ingresar() {
-    // this.sucursal = this.filterData.getSucursalByIndex(Number(this.idSucursal));
-
-    // this.doctor = this.sucursal.doctores.find((doctor: any, index: number) => {
-    //   this.indexDoctor = index;
-    //   return doctor.id === this.idDoctor;
-    // });
     this.getDataService.getDoctor(this.dniDoctor).subscribe(doctor => {
       console.log(doctor);
       if (doctor && this.passwordDoctor == doctor.password) {
         this.doctor = doctor;
         localStorage.setItem('doctor', JSON.stringify(this.doctor));
+        localStorage.setItem('iddoctor', this.doctor._id)
         localStorage.setItem('idsucursal', this.doctor.sucursal);
           if (doctor.password == doctor.dni) {
             this.router.navigate(['/datos']);

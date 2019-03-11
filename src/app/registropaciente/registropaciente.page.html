@@ -9,20 +9,40 @@
 
 <ion-content padding>
   <h1 align="center">Registro de Paciente</h1>
+  <ion-item>
+    <ion-input [(ngModel)]="paciente.dni"></ion-input>
+    <ion-button (click)="getPaciente()"><ion-icon name="search"></ion-icon></ion-button>
+  </ion-item>
   <ion-input
     type="text" 
     placeholder="Nombres y Apellidos"
-    [(ngModel)]="nombrePaciente">
+    [(ngModel)]="paciente.nombres">
   </ion-input>
   <ion-input
     type="tel" 
     placeholder="Numero de Teléfono o Celular"
-    [(ngModel)]="celularPaciente">
+    [(ngModel)]="paciente.telefono">
   </ion-input>
-  
-  <ion-select placeholder="Tipo de Trato" [(ngModel)]="tratoPaciente">
-    <ion-select-option value="prenatal">Prenatal</ion-select-option>
-    <ion-select-option value="vacunas">Vacunas</ion-select-option>
+  <ion-input
+    type="number" 
+    placeholder="Edad del Paciente"
+    [(ngModel)]="paciente.edad">
+  </ion-input>
+  <ion-input
+    type="number" 
+    placeholder="Hoy Registro"
+    [(ngModel)]="paciente.fecharegistro">
+  </ion-input>
+  <ion-input
+    type="number" 
+    placeholder="Cita Próxima"
+    [(ngModel)]="paciente.citaproxima">
+  </ion-input>
+    
+  <ion-select placeholder="Tipo de Trato" [(ngModel)]="paciente.tipo">
+    <ion-select-option value="embarazo">Prenatal</ion-select-option>
+    <ion-select-option value="vacuna">Vacunas</ion-select-option>
+    <ion-select-option value="cred">CRED</ion-select-option>
   </ion-select>
 
   <ion-button (click)="abrirDiasCita()">Candelarizacion</ion-button>
@@ -34,15 +54,3 @@
   </ion-button>
 
 </ion-content>
-
-<!-- id: '2',
-nombre: 'Paciente2',
-celular: '999999994',
-estado: false,
-citas: [ 
-  { fecha: 80, estado: 'Espera', descripcion: '2' }, 
-  { fecha: 100, estado: 'Espera', descripcion: '42' }, 
-  { fecha: 110, estado: 'Espera', descripcion: '21' }, 
-  { fecha: 120, estado: 'Espera', descripcion: '12' }
-],
-citaUltima: 0 -->

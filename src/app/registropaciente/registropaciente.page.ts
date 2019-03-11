@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GetDataService } from 'src/services/getdata.service';
+import { Paciente } from 'src/interfaces/models/paciente.model';
+import { AlertPersonalized } from 'src/personalized/alert.personalized';
+import { PostDataService } from 'src/services/postdata.service';
 
 @Component({
   selector: 'app-registropaciente',
@@ -8,17 +12,55 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./registropaciente.page.scss'],
 })
 export class RegistropacientePage implements OnInit {
-  nombrePaciente: string = '';
-  celularPaciente: string = '';
+  nombresPaciente: string = '';
+  dniPaciente: string = '';
+  telefonoPaciente: string = '';
   tipoPaciente: string = '';
   fechaHoy: number = 130;
+  paciente: Paciente = {
+    dni: '',
+    nombres: '',
+    edad: 0,
+    telefono: '',
+    tipo: localStorage.getItem('tipopaciente'),
+    fecharegistro: new Date(Date.now()),
+    sucursal: localStorage.getItem('idsucursal'),
+    ultimodoctor: localStorage.getItem('iddoctor'),
+    citaproxima: 0,
+    citas: ''
+  }
   constructor(
-    private alertCtrl: AlertController,
+    public alertCtrl: AlertController,
+    private alertPersonalized: AlertPersonalized,
+    private getDataService: GetDataService,
+    private postDataService: PostDataService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.tipoPaciente = localStorage.getItem('tipopaciente');
   }
+
+  getPaciente() {
+    this.getDataService.getPacienteByDNI(this.paciente.dni).subscribe((paciente: Paciente) => { 
+      if (paciente) {
+        this.alertPersonalized.toastDegradable('Paciente Encontrado, Redireccionando a las Sesiones de Cita', 4);
+        this.router.navigate(['/chequeo', paciente.citas]);
+      }
+      this.getDataService.getDNI(this.paciente.dni).subscribe((data: any) => {
+        this.paciente.nombres = data.nombres;
+      })
+    })
+  }
+
+  registrarPaciente() {
+    this.postDataService.postPaciente(this.paciente).subscribe((data: any) => {
+        this.router.navigate(['/chequeo', data])
+      })
+  }
+
+
+  
   async abrirDiasCita() {
     const alert = await this.alertCtrl.create({
         header: 'Dias de las Citas',
