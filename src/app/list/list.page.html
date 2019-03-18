@@ -1,117 +1,88 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      <p class="pform">Listado</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding style="border-radius:10px"> 
-      <ion-item 
-        color="light" 
-        style="border:1px solid rgb(255,255,255);"
-        (click)="goToPacientesVacuna()">
-
-        <ion-thumbnail>
-          <img 
-            style="border-radius:50%" 
-            src="">
-        </ion-thumbnail>
-        <ion-label align="center">Vacunas</ion-label>
-        <ion-badge color="warning" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="success" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="danger" slot="end" style="border:1px solid black">11</ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        
-        <ion-item-option 
-          color="light"
-          style="border:1px solid rgb(255,255,255)">
-          <span style="padding:0px 15px">+</span>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding style="border-radius:10px"> 
-
-      <ion-item 
-        color="tertiary" 
-        style="border:1px solid rgb(255,255,255);"
-        (click)="goToPacientesEmbarazo()">
-
-        <ion-thumbnail>
-          <img 
-            style="border-radius:50%" 
-            src="">
-        </ion-thumbnail>
-
-        <ion-label align="center">Gestante</ion-label>
-        <ion-badge color="warning" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="success" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="danger" slot="end" style="border:1px solid black">11</ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option 
-          color="tertiary"
-          style="border:1px solid rgb(255,255,255)">
-          <span style="padding:0px 15px">+</span>
-        </ion-item-option>
-      </ion-item-options>
-
-    </ion-item-sliding>
-
-    <ion-item-sliding style="border-radius:10px"> 
-      <ion-item 
-        color="warning" 
-        style="border:1px solid rgb(255,255,255);"
-        (click)="goToPacientesCred()">
-
-        <ion-thumbnail>
-          <img 
-            style="border-radius:50%" 
-            src="">
-        </ion-thumbnail>
-
-        <ion-label align="center">CRED</ion-label>
-        <ion-badge color="warning" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="success" slot="end" style="border:1px solid black">11</ion-badge>
-        <ion-badge color="danger" slot="end" style="border:1px solid black">11</ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        
-        <ion-item-option 
-          color="warning"
-          style="border:1px solid rgb(255,255,255)">
-          <span style="padding:0px 15px">+</span>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item
-      style="background-color:#86888f;border:1px solid rgb(255,255,255);border-radius:10px;"
-      [routerLink]="['/herramientas']">
-      <ion-thumbnail>
-        <img 
-          style="border-radius:50%" 
-          src="">
-      </ion-thumbnail>
-      <ion-label>
-        <ion-text>
-          <h3 align="center">Archivos</h3>
-        </ion-text>
-      </ion-label>
-    </ion-item>
-
-
+    <ion-grid class="background" responsive-sm>
+      <ion-row>
+        <ion-col width-33 (click)="goToPacientes('vacuna')">
+          <img src="assets/imgs_gcm/baby.png" class="ion-img"/>
+        </ion-col>
+        <ion-col width-33>
+          <p class="pform">VACUNAS</p>
+        </ion-col>
+        <ion-col width-33>
+          <ion-button
+            class="button-add"
+            color="secondary"
+            (click)="goToRegistroPaciente('vacuna')"
+            >Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="background" responsive-sm>
+      <ion-row>
+        <ion-col width-33 (click)="goToPacientes('embarazo')">
+          <img src="assets/imgs_gcm/pregnant.png" class="ion-img"/>
+        </ion-col>
+        <ion-col width-33>
+          <p class="pform">GESTANTE</p>
+        </ion-col>
+        <ion-col width-33>
+          <ion-button 
+            class="button-add"
+            color="secondary"
+            (click)="goToRegistroPaciente('embarazo')"
+            >Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="background" responsive-sm>
+      <ion-row>
+        <ion-col width-33 (click)="goToPacientes('cred')">
+          <img src="assets/imgs_gcm/boy.png" class="ion-img"/>
+        </ion-col>
+        <ion-col width-33>
+          <p class="pform">CRED</p>
+        </ion-col>
+        <ion-col width-33>
+          <ion-button
+            class="button-add"
+            color="secondary"
+            (click)="goToRegistroPaciente('cred')"
+            >Agregar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid class="background" responsive-sm>
+      <ion-row>
+        <ion-col col-4>
+          <img src="assets/imgs_gcm/files.png" class="ion-img" style="width:100px"/>
+        </ion-col>
+        <ion-col col-8>
+          <p class="pform">ARCHIVOS</p>
+          <label>
+            <ion-button 
+              class="button-files" 
+              color="danger" 
+              [routerLink]="['/herramientas']"
+              >Ver Archivos
+            </ion-button>
+          </label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
-
 
 </ion-content>

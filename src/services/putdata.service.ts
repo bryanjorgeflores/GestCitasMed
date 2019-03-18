@@ -13,4 +13,7 @@ export class PutDataService {
   putDoctor(doctor: any, id: string): Observable<any> {
     return this.http.put(`${URL}/doctor/${id}`, doctor);
   }
+  putCita(id: string, index: number, sesion: any): Observable<any> {
+    return this.http.put(`${URL}/cita/${id}/${index}`, sesion);
+  }
 }

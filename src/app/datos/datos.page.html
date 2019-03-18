@@ -1,58 +1,110 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Datos</ion-title>
+    <p class="pform">Actualizacion de Datos</p>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h1 align="center">Actualizacion de Datos</h1>
-  <ion-input [value]="dniDoctor" disabled></ion-input>
-  <ion-input 
-    type="text"
-    [(ngModel)]="cambiosDoctor.nombres"
-    placeholder="Nombres">
-  </ion-input>
-  <ion-input 
-    type="tel"
-    maxlength="9" 
-    [(ngModel)]="cambiosDoctor.telefono"
-    placeholder="Celular">
-  </ion-input>
+  <ion-list>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/dni_input.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">DNI</ion-label>
+      <ion-input [value]="doctor.dni" disabled></ion-input>
+    </ion-item>
 
-  <ion-select placeholder="Sucursal" [(ngModel)]="cambiosDoctor.sucursal"> 
-    <div *ngFor="let sucursal of sucursales; let i = index">
-        <ion-select-option [value]="sucursal._id">{{sucursal.nombre}}</ion-select-option>
-    </div>
-  </ion-select>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/userchk.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">Nombres y Apellidos</ion-label>
+      <ion-input
+      type="text"
+      style="font-size:11px"
+      [(ngModel)]="cambiosDoctor.nombres"
+      placeholder="Nombres">
+      </ion-input>
+    </ion-item>
 
-  <ol>
-    <li *ngFor="let requisito of requisitos">
-      <ion-text
-        [color]="requisito.noCumple? 'danger': 'success'"
-        >{{requisito.mensaje}} {{requisito.noCumple? "X": ""}}</ion-text>
-    </li>
-  </ol>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/phone.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">Celular</ion-label>
+      <ion-input 
+      type="tel"
+      maxlength="9" 
+      [(ngModel)]="cambiosDoctor.telefono"
+      placeholder="Celular">
+      </ion-input>
+    </ion-item>
 
-  <ion-input 
-    type="password"
-    minlength="6"
-    [(ngModel)]="cambiosDoctor.password"
-    placeholder="Contraseña Nueva">
-  </ion-input>
-  <ion-input 
-    type="password"
-    minlength="6"
-    [(ngModel)]="passwordRep"
-    placeholder="Repita Contraseña Nueva">
-  </ion-input>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/sucursal_input.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">Sucursal</ion-label>
+      <ion-select placeholder="Sucursal" [(ngModel)]="cambiosDoctor.sucursal"> 
+        <div *ngFor="let sucursal of sucursales; let i = index">
+            <ion-select-option [value]="sucursal._id">{{sucursal.nombre}}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
 
-  <ion-button
-    color="success"
-    expand="full" 
-    (click)="aplicarCambios()"
-    >Aplicar Cambios
-  </ion-button>
+    <ion-item>
+      <ion-card>
+        <ion-card-content>
+          <h3 color="dark">Requisitos Contraseña:</h3>
+          <ol>
+            <li *ngFor="let requisito of requisitos">
+              <ion-text
+                [color]="requisito.noCumple? 'danger': 'success'"
+                style="font-size:13px;"
+                >{{requisito.mensaje}} {{requisito.noCumple? "X": ""}}</ion-text>
+            </li>
+          </ol>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/lock.png" width="32px"/>
+      </p>
+        <ion-label position="stacked" color="dark">Contraseña Nueva</ion-label>
+        <ion-input
+          type="password"
+          minlength="6"
+          [(ngModel)]="cambiosDoctor.password"
+          placeholder="Contraseña Nueva">
+        </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/lock.png" width="32px">
+      </p>
+      <ion-label position="stacked" color="dark">Contraseña Nueva</ion-label>
+      <ion-input 
+        type="password"
+        minlength="6"
+        [(ngModel)]="passwordRep"
+        placeholder="Repita Contraseña Nueva">
+      </ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <ion-button
+      color="secondary"
+      expand="full" 
+      (click)="aplicarCambios()"
+      >Aplicar Cambios
+    </ion-button>
+  </div>
+
 </ion-content>

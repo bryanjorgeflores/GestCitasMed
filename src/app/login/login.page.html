@@ -2,28 +2,46 @@
 
   <h1 align="center">LOGIN</h1>
   
-  <ion-input 
-    type="text"
-    maxlength="8" 
-    [(ngModel)]="dniDoctor" 
-    placeholder="DNI">
-  </ion-input>
-  <ion-input 
-    type="password" 
-    [(ngModel)]="passwordDoctor"
-    placeholder="password">
-  </ion-input>
+  <ion-list>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/userchk.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">DNI</ion-label> 
+      <ion-input 
+        type="text"
+        maxlength="8" 
+        [(ngModel)]="dniDoctor" 
+        placeholder="DNI">
+      </ion-input>
+    </ion-item>
 
-  <br/>
+    <ion-item>
+      <p slot="start">
+        <img src="assets/imgs_gcm/lock.png" width="32px"/>
+      </p>
+      <ion-label position="stacked" color="dark">Contraseña</ion-label> 
+      <ion-input 
+        type="password" 
+        [(ngModel)]="passwordDoctor"
+        placeholder="password">
+      </ion-input>
+    </ion-item>
 
-  <ion-button 
-    color="success"
-    expand="full" 
-    (click)="ingresar()"
-    >INGRESAR
-  </ion-button>
-  <br/>
+  </ion-list>
 
-  <a (click)="recuperar()"> Recuperar Contraseña</a>
+  <!-- <br/> -->
+  <div padding>
+    <ion-button 
+      color="primary"
+      expand="full" 
+      (click)="ingresar()"
+      >INGRESAR
+    </ion-button>
+  </div>
+
+  <!-- <br/> -->
+
+  <!-- <a (click)="recuperar()"> Recuperar Contraseña</a> -->
 
 </ion-content>

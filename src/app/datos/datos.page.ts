@@ -50,11 +50,15 @@ export class DatosPage implements OnInit {
       console.log(err);
     });
     this.doctor = JSON.parse(localStorage.getItem('doctor'));
-    this.getDataService.getDNI(this.doctor.dni).subscribe((data: any) => {
-      this.cambiosDoctor.nombres = data.nombres;
-    });
-    this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
+    this.cambiosDoctor.nombres = this.doctor.nombres;
+    if(!this.cambiosDoctor.nombres) {
+      this.getDataService.getDNI(this.doctor.dni).subscribe((data: any) => {
+        this.cambiosDoctor.nombres = data.nombres;
+      });
+    }
     this.cambiosDoctor.telefono = this.doctor.telefono;
+    this.cambiosDoctor.sucursal = this.doctor.sucursal;
+    this.requisitos = requisitosPassword(this.cambiosDoctor.password, this.passwordRep);
   }
 
   aplicarCambios() {
@@ -63,6 +67,12 @@ export class DatosPage implements OnInit {
       return condicion.noCumple === true;
     });
     if (passwordRev === -1) {
+      this.doctor.nombres = this.cambiosDoctor.nombres;
+      this.doctor.telefono = this.cambiosDoctor.telefono;
+      this.doctor.password = this.cambiosDoctor.password;
+      this.doctor.sucursal = this.cambiosDoctor.sucursal;
+      localStorage.setItem('doctor', JSON.stringify(this.doctor));
+
       this.putDataService.putDoctor(this.cambiosDoctor, this.doctor._id).subscribe(() => {
         this.alertPersonalized.toastDegradable(
           'Cambios Realizados, Bienvenido alSistema',

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from 'src/services/getdata.service';
 import { Citas } from 'src/interfaces/models/citas.model';
+import { PutDataService } from 'src/services/putdata.service';
 
 @Component({
   selector: 'app-solicitud',
@@ -9,6 +10,7 @@ import { Citas } from 'src/interfaces/models/citas.model';
   styleUrls: ['./solicitud.page.scss'],
 })
 export class SolicitudPage implements OnInit {
+  idCitas: string = '';
   indexSesion: number = 0;
   sesion: any = {
     numero: 0,
@@ -23,13 +25,15 @@ export class SolicitudPage implements OnInit {
 
   constructor(
     public activatedRoute: ActivatedRoute,
-    private getDataService: GetDataService
+    private getDataService: GetDataService,
+    private putDataService: PutDataService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.indexSesion = Number(localStorage.getItem('indexsesion'));
-    let idCitas = localStorage.getItem('idcitas')
-    this.getDataService.getCita(idCitas, this.indexSesion).subscribe((data: any) => {
+    this.idCitas = localStorage.getItem('idcitas')
+    this.getDataService.getCita(this.idCitas, this.indexSesion).subscribe((data: any) => {
       this.sesion.numero = data.numero;
       this.sesion.tratamiento = data.tratamiento;
       this.sesion.descripcion = data.descripcion;
@@ -39,5 +43,11 @@ export class SolicitudPage implements OnInit {
       this.sesion.doctor = data.doctor;
       this.sesion.sucursal = data.sucursal;
     })
+  }
+
+  actualizarSesion() {
+    this.putDataService.putCita(this.idCitas, this.indexSesion, this.sesion).subscribe((data: any) => {
+      this.router.navigate(['/chequeo', localStorage.getItem('idcitas')]);
+    });
   }
 }

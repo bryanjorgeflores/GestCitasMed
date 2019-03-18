@@ -20,4 +20,31 @@
     <li>{{sesion.doctor}}</li>
     <li>{{sesion.sucursal}}</li>    
   </ul>
+
+  <div>
+    <ion-input 
+      placeholder="tratamiento"
+      [(ngModel)]="sesion.tratamiento"
+    ></ion-input>
+    <ion-input 
+      placeholder="descripcion"
+      [(ngModel)]="sesion.descripcion"
+    ></ion-input>
+    <ion-select placeholder="Estado de la Sesión" [(ngModel)]="sesion.estado">
+      <ion-select-option value="true">Administrado</ion-select-option>
+      <ion-select-option value="false">Faltante</ion-select-option>
+    </ion-select>
+    <ion-input 
+      type="date"
+      placeholder="Fecha Programada"
+      [(ngModel)]="sesion.fechaprogramada"
+    ></ion-input>
+    <ion-input 
+      type="date"
+      placeholder="Fecha Tratamiento"
+      [(ngModel)]="sesion.fechatratada"
+    ></ion-input>
+    <ion-button (click)="actualizarSesion()">CAMBIAR</ion-button>
+  </div>
+
 </ion-content>

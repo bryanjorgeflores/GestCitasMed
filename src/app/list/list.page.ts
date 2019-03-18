@@ -16,18 +16,25 @@ export class ListPage implements OnInit {
 
   ngOnInit() {
   }
-  goToPacientesVacuna() {
-    localStorage.setItem('tipopaciente', 'vacuna');
+  goToPacientes(tipoPaciente: string) {
+    localStorage.setItem('tipopaciente', tipoPaciente);
     this.router.navigate(['/home']);
   }
-  goToPacientesEmbarazo() {
-    localStorage.setItem('tipopaciente', 'embarazo');
-    this.router.navigate(['/home']);
+
+  goToRegistroPaciente(tipoPaciente: string) {
+    localStorage.setItem('tipopaciente', tipoPaciente);
+    this.router.navigate(['/registropaciente'])
   }
-  goToPacientesCred() {
-    localStorage.setItem('tipopaciente', 'cred');
-    this.router.navigate(['/home']);
-  }
+
+
+  // goToPacientesEmbarazo() {
+  //   localStorage.setItem('tipopaciente', 'embarazo');
+  //   this.router.navigate(['/home']);
+  // }
+  // goToPacientesCred() {
+  //   localStorage.setItem('tipopaciente', 'cred');
+  //   this.router.navigate(['/home']);
+  // }
 
 
 }
