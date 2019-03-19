@@ -18,7 +18,7 @@ export class ListPage implements OnInit {
   }
   goToPacientes(tipoPaciente: string) {
     localStorage.setItem('tipopaciente', tipoPaciente);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/tabspacientes/espera']);
   }
 
   goToRegistroPaciente(tipoPaciente: string) {

@@ -15,7 +15,7 @@
       style="margin:10px 0px;" 
       *ngFor="let paciente of pacientes">
 
-      <ion-item 
+      <ion-item
         [routerLink]="['/chequeo', paciente.citas]">
 
         <ion-thumbnail>
@@ -44,7 +44,7 @@
     </ion-item-sliding>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
       <ion-fab-button [routerLink]="['/registropaciente']">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
@@ -68,3 +68,4 @@
     </ion-segment-button>
   </ion-segment>
 </ion-footer>
+

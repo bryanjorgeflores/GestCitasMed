@@ -42,7 +42,16 @@ const routes: Routes = [
   { 
     path: 'datos', 
     loadChildren: './datos/datos.module#DatosPageModule' 
-  }
+  },
+  { 
+    path: 'tabspacientes', 
+    loadChildren: './tabspacientes/tabspacientes.module#TabspacientesPageModule' 
+  },
+  { 
+    path: 'tabscitas', 
+    loadChildren: './tabscitas/tabscitas.module#TabscitasPageModule' 
+  },
+
 ];
 
 @NgModule({

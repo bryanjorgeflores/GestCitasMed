@@ -13,6 +13,7 @@ import { Paciente } from 'src/interfaces/models/paciente.model';
 export class ChequeoPage implements OnInit {
   sesiones: Array<Object>;
   paciente: Paciente;
+  idCitas: string = '';
   constructor(
     private route: ActivatedRoute,
     private filterData: FilterData,
@@ -23,9 +24,9 @@ export class ChequeoPage implements OnInit {
    }
 
   ngOnInit() {
-    let idCitas = this.activatedRoute.snapshot.paramMap.get('idcitas');
-    localStorage.setItem('idcitas', idCitas);
-    this.getDataService.getCitas(idCitas).subscribe((sesiones: Array<Object>) => {
+    this.idCitas = this.activatedRoute.snapshot.paramMap.get('idcitas');
+    localStorage.setItem('idcitas', this.idCitas);
+    this.getDataService.getCitas(this.idCitas).subscribe((sesiones: Array<Object>) => {
       this.sesiones = sesiones;
     });
   }
