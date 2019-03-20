@@ -1,5 +1,7 @@
 {
   "name": "gestCitasMed",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

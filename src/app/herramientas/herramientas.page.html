@@ -1,38 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>herramientas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-  <ion-grid >
-    <ion-row responsive-sm>
-      <ion-col col-6 *ngFor="let tarjeta of tarjetas">
-        <ion-card>
-          <button [routerLink]="['/imagenes', tarjeta.src]">
-          <img src="{{tarjeta.src}}"/>
-          <div class="card-title">{{tarjeta.titulo}}</div>
-          <div class="card-subtitle">{{tarjeta.subtitulo}}</div>
-        </button>
-        </ion-card>
-      
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-list lines="none">
-    <ion-list-header>
-      Archivos
-    </ion-list-header>
-    <ion-item>
-      <ng-container *ngFor="let archivo of archivos; let i=index">
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <p class="pform">Archivos</p>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+    
+<ion-content  class="card-background-page">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let tarjeta of tarjetas">
+            <ion-card>
+              <img class="ion-img" src="{{tarjeta.src}}" imageViewer/>
+              <div class="card-title">{{tarjeta.titulo}}</div>
+              <div class="card-subtitle">{{tarjeta.subtitulo}}</div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid padding>
+        <p class="nombre">Archivos
+        <ion-row *ngFor="let archivo of archivos; let i=index">
           <div *ngIf="archivo.estado">
-            <h6 font size=12px>{{i+1}}. {{archivo.nombre}}
+            <label font size=12px>{{i+1}}. {{archivo.nombre}}
               <a href="{{archivo.url}}">
                   <img src="assets/imgs_herramientas/pdf.png">
               </a>
-            </h6>
-        </div>
-      </ng-container>
-  </ion-item>    
-  </ion-list>
+            </label>
+          </div>
+        </ion-row>
+      </p>
+      </ion-grid>
+      <ion-button (click)="viewPhoto()">View Photo</ion-button>
 </ion-content>

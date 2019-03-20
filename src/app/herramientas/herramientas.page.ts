@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Archivo } from 'src/interfaces/archivo';
 import { Tarjeta } from 'src/interfaces/tarjeta';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-herramientas',
@@ -13,8 +15,11 @@ export class HerramientasPage implements OnInit {
   tarjetas : Tarjeta[];
   constructor(
     private router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public photoViewer: PhotoViewer,
+    private file: File
   ) {
+
     let archivo1: Archivo = {
       nombre: 'Archivo 1',
       url: 'https://www.google.com',
@@ -55,25 +60,25 @@ export class HerramientasPage implements OnInit {
     let tarjeta1: Tarjeta = {
       titulo: 'Primer Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs_herramientas/img1.jpg',
+      src:'assets/imgs_herramientas/img.png',
       estado:true
     };
     let tarjeta2: Tarjeta = {
       titulo: 'Segundo Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs_herramientas/img2.jpg',
+      src:'assets/imgs_herramientas/img.png',
       estado:true
     };
     let tarjeta3: Tarjeta = {
       titulo: 'Tercer Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs_herramientas/img3.jpg',
+      src:'assets/imgs_herramientas/img.png',
       estado:true
     };
     let tarjeta4: Tarjeta = {
       titulo: 'Cuarto Archivo',
       subtitulo: 'Descripcion',
-      src:'assets/imgs_herramientas/img4.jpg',
+      src:'assets/imgs_herramientas/img.png',
       estado:true
     };
     
@@ -81,6 +86,13 @@ export class HerramientasPage implements OnInit {
     this.tarjetas = [tarjeta1,tarjeta2,tarjeta3,tarjeta4];
   }
 
+
   ngOnInit() {
   }
+  
+  viewPhoto(){
+    this.photoViewer.show('https://www.freakyjolly.com/wp-content/uploads/2017/08/cropped-fjlogo2.png');
+  }
+ 
 }
+

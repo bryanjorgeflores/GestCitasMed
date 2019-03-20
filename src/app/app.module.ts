@@ -15,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { PutDataService } from 'src/services/putdata.service';
 import { PostDataService } from 'src/services/postdata.service';
 
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import { File } from '@ionic-native/file/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,7 +35,9 @@ import { PostDataService } from 'src/services/postdata.service';
     PutDataService,
     PostDataService, 
     AlertPersonalized,
-    FilterData
+    FilterData,
+    PhotoViewer,
+    File
   ],
   bootstrap: [AppComponent]
 })

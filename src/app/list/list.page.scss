@@ -1,23 +1,31 @@
 .button-not{
   text-decoration: none;
-  padding: 10px;
   font-weight: 600;
   font-size: 20px;
-  color: #ffffff;
-  border-radius: 6px;
+  border-radius: 5px;
   border: 1px solid black;
+  width:25%;
+  height: 45px;
 }
 .background{
   background-color: white;
   border: 1px solid black;
 }
+.center-div
+{
+  margin: auto;
+  width: 180%; 
+}
+
 .button-add{
   text-decoration: none;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 16px;
   color: #ffffff;
-  width: 100%;
+  width:100%;
   height: 100%;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 .button-files{
   text-decoration: none;
@@ -26,11 +34,13 @@
   color: #ffffff;
   width: 100%;
   height: 40%;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 .ion-img{
-  width: 100%;
+  width: 80%;
   height: 100%;
-  padding: 25px 0 0 0;
+  padding: 0 0 0 0;
 }
 .pform{
   font-style:serif;
