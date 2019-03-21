@@ -1,53 +1,71 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>registropaciente</ion-title>
+    <ion-title>
+      <p class="pform">Registrar Paciente</p>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h1 align="center">Registro de Paciente</h1>
   <ion-item>
-    <ion-input [(ngModel)]="paciente.dni"></ion-input>
-    <ion-button (click)="getPaciente()"><ion-icon name="search"></ion-icon></ion-button>
+    <ion-input [(ngModel)]="paciente.dni" placeholder="Ingrese un DNI"></ion-input>
+    <ion-button color="secondary" (click)="getPaciente()"><ion-icon name="search"></ion-icon></ion-button>
   </ion-item>
-  <ion-input
-    type="text" 
-    placeholder="Nombres y Apellidos"
-    [(ngModel)]="paciente.nombres">
-  </ion-input>
-  <ion-input
+  <ion-item>
+    <img item-start src="assets/imgs_gcm/user.png">
+    <ion-input
+      type="text" 
+      placeholder=" Nombres y Apellidos"
+      [(ngModel)]="paciente.nombres">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+      <img item-start src="assets/imgs_gcm/phone.png">
+    <ion-input
     type="tel" 
-    placeholder="Numero de Teléfono o Celular"
+    placeholder=" Numero de Teléfono o Celular"
     [(ngModel)]="paciente.telefono">
-  </ion-input>
-  <ion-input
-    type="number" 
-    placeholder="Edad del Paciente"
-    [(ngModel)]="paciente.edad">
-  </ion-input>
-  <ion-input
-    type="number" 
-    placeholder="Hoy Registro"
-    [(ngModel)]="paciente.fecharegistro">
-  </ion-input>
-  <ion-input
-    type="number" 
-    placeholder="Cita Próxima"
-    [(ngModel)]="paciente.citaproxima">
-  </ion-input>
+    </ion-input>
+  </ion-item>
+  <ion-item>
+      <img item-start src="assets/imgs_gcm/age.png">
+    <ion-input
+      type="number" 
+      placeholder=" Edad del Paciente"
+      [(ngModel)]="paciente.edad">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+      <img item-start src="assets/imgs_gcm/period.png">
+    <ion-input
+      type="number" 
+      placeholder=" Hoy Registro"
+      [(ngModel)]="paciente.fecharegistro">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+      <img item-start src="assets/imgs_gcm/period.png">
+    <ion-input
+      type="number" 
+      placeholder=" Cita Próxima"
+      [(ngModel)]="paciente.citaproxima">
+    </ion-input>
+  </ion-item>
+  
     
-  <ion-select placeholder="Tipo de Trato" [(ngModel)]="paciente.tipo">
+  <ion-select placeholder=" Tipo de Trato" [(ngModel)]="paciente.tipo">
     <ion-select-option value="embarazo">Gestante</ion-select-option>
     <ion-select-option value="vacuna">Vacunas</ion-select-option>
     <ion-select-option value="cred">CRED</ion-select-option>
   </ion-select>
 
-  <ion-button (click)="abrirDiasCita()">Candelarizacion</ion-button>
+  <ion-button color="secondary" (click)="abrirDiasCita()">Candelarizacion</ion-button>
 
   <ion-button 
+    color="secondary"
     expand="full" 
     (click)="registrarPaciente()"
     >REGISTRAR

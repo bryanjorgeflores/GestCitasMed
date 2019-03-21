@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Doctor } from 'src/interfaces/models/doctor.model';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-list',
@@ -9,7 +10,8 @@ import { Doctor } from 'src/interfaces/models/doctor.model';
 })
 export class ListPage implements OnInit {
   constructor(
-    public router: Router
+    public router: Router,
+    public menuCtrl: MenuController
   ) {
     
   }
@@ -36,5 +38,8 @@ export class ListPage implements OnInit {
   //   this.router.navigate(['/home']);
   // }
 
+  ionViewWillEnter() {
+    this.menuCtrl.enable(true);
+   }
 
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FilterData } from 'src/personalized/filter.data.personalized';
 import { GetDataService } from 'src/services/getdata.service';
 import { Sucursal } from 'src/interfaces/models/sucursal.model';
+import { MenuController } from '@ionic/angular';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginPage implements OnInit {
   constructor(
     private alertPersonalized: AlertPersonalized,
     public router: Router,
-    private getDataService: GetDataService
+    private getDataService: GetDataService,
+    public menuCtrl: MenuController
   ) { 
     
     
@@ -52,5 +54,8 @@ export class LoginPage implements OnInit {
     });
 
   }
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+   }
   
 }

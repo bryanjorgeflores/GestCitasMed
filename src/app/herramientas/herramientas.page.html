@@ -14,7 +14,7 @@
         <ion-row>
           <ion-col size="6" *ngFor="let tarjeta of tarjetas">
             <ion-card>
-              <img class="ion-img" src="{{tarjeta.src}}" imageViewer/>
+              <img class="ion-img" [src]="tarjeta.src" (click)="viewPhoto(tarjeta.src)"/>
               <div class="card-title">{{tarjeta.titulo}}</div>
               <div class="card-subtitle">{{tarjeta.subtitulo}}</div>
             </ion-card>
@@ -34,5 +34,4 @@
         </ion-row>
       </p>
       </ion-grid>
-      <ion-button (click)="viewPhoto()">View Photo</ion-button>
 </ion-content>
