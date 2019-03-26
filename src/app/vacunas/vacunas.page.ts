@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tabscitas',
-  templateUrl: './tabscitas.page.html',
-  styleUrls: ['./tabscitas.page.scss'],
+  selector: 'app-vacunas',
+  templateUrl: './vacunas.page.html',
+  styleUrls: ['./vacunas.page.scss'],
 })
-export class TabscitasPage implements OnInit {
+export class VacunasPage implements OnInit {
 
   constructor(private screenOrientation: ScreenOrientation,
     public platform:Platform) { }
@@ -15,8 +15,9 @@ export class TabscitasPage implements OnInit {
   ngOnInit() {
     this.platform.ready().then(() => {
       this.screenOrientation.unlock();
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
   });
   }
+  
 
 }

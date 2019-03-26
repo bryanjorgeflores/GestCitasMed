@@ -1,4 +1,4 @@
-const URL = "http://localhost/api"
+const URL = "http://gestcitasapi.herokuapp.com/api"
 let requisitosPassword = (password: string, passwordRep: string) => {
   return [
     { mensaje: 'Contraseña no Vacía', noCumple: password == '' },

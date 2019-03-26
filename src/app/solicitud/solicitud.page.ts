@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from 'src/services/getdata.service';
 import { Citas } from 'src/interfaces/models/citas.model';
 import { PutDataService } from 'src/services/putdata.service';
+import { Platform } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-solicitud',
@@ -27,7 +29,9 @@ export class SolicitudPage implements OnInit {
     public activatedRoute: ActivatedRoute,
     private getDataService: GetDataService,
     private putDataService: PutDataService,
-    public router: Router
+    public router: Router,
+    private screenOrientation: ScreenOrientation,
+      public platform:Platform
   ) { }
 
   ngOnInit() {
@@ -43,7 +47,20 @@ export class SolicitudPage implements OnInit {
       this.sesion.doctor = data.doctor;
       this.sesion.sucursal = data.sucursal;
     })
+
+      this.platform.ready().then(() => {
+        this.screenOrientation.unlock();
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    });
+    console.log("Se cargo");
   }
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+      this.screenOrientation.unlock();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  });
+  console.log("Se recargo");
+}
 
   actualizarSesion() {
     this.putDataService.putCita(this.idCitas, this.indexSesion, this.sesion).subscribe((data: any) => {

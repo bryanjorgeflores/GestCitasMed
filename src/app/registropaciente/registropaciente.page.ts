@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from 'src/services/getdata.service';
 import { Paciente } from 'src/interfaces/models/paciente.model';
 import { AlertPersonalized } from 'src/personalized/alert.personalized';
 import { PostDataService } from 'src/services/postdata.service';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-registropaciente',
@@ -34,11 +35,17 @@ export class RegistropacientePage implements OnInit {
     private alertPersonalized: AlertPersonalized,
     private getDataService: GetDataService,
     private postDataService: PostDataService,
-    public router: Router
+    public router: Router,
+    private screenOrientation: ScreenOrientation,
+    public platform:Platform
   ) { }
 
   ngOnInit() {
     this.tipoPaciente = localStorage.getItem('tipopaciente');
+    this.platform.ready().then(() => {
+      this.screenOrientation.unlock();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  });
   }
 
   getPaciente() {
@@ -49,6 +56,7 @@ export class RegistropacientePage implements OnInit {
       }
       this.getDataService.getDNI(this.paciente.dni).subscribe((data: any) => {
         this.paciente.nombres = data.nombres;
+        this.paciente.dni="";
       })
     })
   }

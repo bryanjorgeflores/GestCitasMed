@@ -17,6 +17,7 @@ import { PostDataService } from 'src/services/postdata.service';
 
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +38,8 @@ import { File } from '@ionic-native/file/ngx';
     AlertPersonalized,
     FilterData,
     PhotoViewer,
-    File
+    File,
+    ScreenOrientation
   ],
   bootstrap: [AppComponent]
 })

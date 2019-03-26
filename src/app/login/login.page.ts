@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { FilterData } from 'src/personalized/filter.data.personalized';
 import { GetDataService } from 'src/services/getdata.service';
 import { Sucursal } from 'src/interfaces/models/sucursal.model';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 
 @Component({
@@ -21,14 +22,27 @@ export class LoginPage implements OnInit {
     private alertPersonalized: AlertPersonalized,
     public router: Router,
     private getDataService: GetDataService,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    private screenOrientation: ScreenOrientation,
+    public platform:Platform
   ) { 
     
     
   }
 
   ngOnInit() {
+    this.platform.ready().then(() => {
+      this.screenOrientation.unlock();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  });
   }
+  ionViewDidEnter() {
+    this.platform.ready().then(() => {
+      this.screenOrientation.unlock();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  });
+  console.log("Se recargo");
+}
 
   ingresar() {
     this.getDataService.getDoctor(this.dniDoctor).subscribe(doctor => {

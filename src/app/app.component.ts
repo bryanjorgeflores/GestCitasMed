@@ -25,6 +25,11 @@ export class AppComponent {
       title: 'Cerrar Sesión',
       url: '/login',
       icon: 'log-out'
+    },
+    {
+      title: 'Vacunas',
+      url: '/vacunas',
+      icon: 'close'
     }
   ];
 
@@ -46,4 +51,5 @@ export class AppComponent {
   goTo(ruta: string) {
     this.router.navigate([ruta]);
   }
+  
 }

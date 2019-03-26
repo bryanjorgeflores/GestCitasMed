@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -50,7 +50,8 @@ const routes: Routes = [
   { 
     path: 'tabscitas', 
     loadChildren: './tabscitas/tabscitas.module#TabscitasPageModule' 
-  },
+  },  { path: 'vacunas', loadChildren: './vacunas/vacunas.module#VacunasPageModule' },
+
 
 ];
 
