@@ -54,13 +54,7 @@ export class SolicitudPage implements OnInit {
     });
     console.log("Se cargo");
   }
-  ionViewDidEnter() {
-    this.platform.ready().then(() => {
-      this.screenOrientation.unlock();
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
-  });
-  console.log("Se recargo");
-}
+  
 
   actualizarSesion() {
     this.putDataService.putCita(this.idCitas, this.indexSesion, this.sesion).subscribe((data: any) => {

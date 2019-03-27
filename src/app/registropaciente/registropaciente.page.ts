@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController, Platform, LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetDataService } from 'src/services/getdata.service';
 import { Paciente } from 'src/interfaces/models/paciente.model';
@@ -37,7 +37,8 @@ export class RegistropacientePage implements OnInit {
     private postDataService: PostDataService,
     public router: Router,
     private screenOrientation: ScreenOrientation,
-    public platform:Platform
+    public platform:Platform,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,17 @@ export class RegistropacientePage implements OnInit {
       this.screenOrientation.unlock();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   });
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      duration: 2000,
+      message: 'Obteniendo datos...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
   }
 
   getPaciente() {

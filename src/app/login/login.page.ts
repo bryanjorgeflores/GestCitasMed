@@ -6,7 +6,7 @@ import { GetDataService } from 'src/services/getdata.service';
 import { Sucursal } from 'src/interfaces/models/sucursal.model';
 import { MenuController, Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,8 @@ export class LoginPage implements OnInit {
     private getDataService: GetDataService,
     public menuCtrl: MenuController,
     private screenOrientation: ScreenOrientation,
-    public platform:Platform
+    public platform:Platform,
+    public loadingController: LoadingController
   ) { 
     
     
@@ -68,6 +69,17 @@ export class LoginPage implements OnInit {
     });
 
   }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      duration: 2000,
+      message: 'Por favor espere...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  }
+
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
    }

@@ -12,7 +12,7 @@
 <ion-content padding>
   <ion-item>
     <ion-input [(ngModel)]="paciente.dni" placeholder="Ingrese un DNI"></ion-input>
-    <ion-button color="secondary" (click)="getPaciente()"><ion-icon name="search"></ion-icon></ion-button>
+    <ion-button color="secondary" (click)="presentLoading();getPaciente()"><ion-icon name="search"></ion-icon></ion-button>
   </ion-item>
   <ion-item>
     <img item-start src="assets/imgs_gcm/user.png">
