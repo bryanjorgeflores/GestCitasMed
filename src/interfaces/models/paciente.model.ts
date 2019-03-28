@@ -2,12 +2,12 @@ export interface Paciente {
   _id?: string,
   dni: string,
   nombres: string,
-  edad: number,
+  edad?: number,
   telefono: string,
   tipo: string,
-  fecharegistro: Date,
+  fecharegistro?: any,
   sucursal: string,
   ultimodoctor: string,
-  citaproxima: number,
+  citaproxima?: any,
   citas: string
 }

@@ -21,15 +21,16 @@ export class RegistropacientePage implements OnInit {
   paciente: Paciente = {
     dni: '',
     nombres: '',
-    edad: 0,
     telefono: '',
     tipo: localStorage.getItem('tipopaciente'),
-    fecharegistro: new Date(Date.now()),
+    fecharegistro: new Date(Date.now()).toLocaleDateString(),
     sucursal: localStorage.getItem('idsucursal'),
     ultimodoctor: localStorage.getItem('iddoctor'),
-    citaproxima: 0,
+    citaproxima: Date.now() + 30*1000*60*60*24,
     citas: ''
   }
+  dni: string = '';
+
   constructor(
     public alertCtrl: AlertController,
     private alertPersonalized: AlertPersonalized,
@@ -52,7 +53,7 @@ export class RegistropacientePage implements OnInit {
   async presentLoading() {
     const loading = await this.loadingController.create({
       spinner: "crescent",
-      duration: 2000,
+      duration: 1000,
       message: 'Obteniendo datos...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
@@ -63,12 +64,11 @@ export class RegistropacientePage implements OnInit {
   getPaciente() {
     this.getDataService.getPacienteByDNI(this.paciente.dni).subscribe((paciente: Paciente) => { 
       if (paciente) {
-        this.alertPersonalized.toastDegradable('Paciente Encontrado, Redireccionando a las Sesiones de Cita', 4);
+        this.alertPersonalized.toastDegradable('Paciente Encontrado, redireccionando a las citas', 2000);
         this.router.navigate(['/chequeo', paciente.citas]);
       }
       this.getDataService.getDNI(this.paciente.dni).subscribe((data: any) => {
         this.paciente.nombres = data.nombres;
-        this.paciente.dni="";
       })
     })
   }
